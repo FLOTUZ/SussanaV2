@@ -20,6 +20,28 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Grupos"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mi_grupoAgregar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Agregar Grupo"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mi_grupoConsultar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultar/Actualizar"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mi_grupoEliminar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mi_grupoReportes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reportes"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="m_tutores">
           <Properties>
@@ -206,7 +228,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btn_mant">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton5"/>
+                <Property name="text" type="java.lang.String" value="Mantenimiento"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -235,17 +257,9 @@
       <SubComponents>
         <Container class="javax.swing.JDesktopPane" name="escritorio">
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="465" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+            <Property name="columns" type="int" value="0"/>
+            <Property name="rows" type="int" value="1"/>
           </Layout>
         </Container>
       </SubComponents>

@@ -1,6 +1,7 @@
 package com.sussana.sussanav2;
 
 
+import ventanas.grupo.Grupos;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
@@ -36,6 +37,10 @@ public class main extends javax.swing.JFrame {
         archivo = new javax.swing.JMenu();
         mi_cerrar = new javax.swing.JMenuItem();
         m_Grupios = new javax.swing.JMenu();
+        mi_grupoAgregar = new javax.swing.JMenuItem();
+        mi_grupoConsultar = new javax.swing.JMenuItem();
+        mi_grupoEliminar = new javax.swing.JMenuItem();
+        mi_grupoReportes = new javax.swing.JMenuItem();
         m_tutores = new javax.swing.JMenu();
         mi_consultarTutor = new javax.swing.JMenuItem();
         mi_altaTutor = new javax.swing.JMenuItem();
@@ -85,7 +90,7 @@ public class main extends javax.swing.JFrame {
 
         pn_extras.setLayout(new java.awt.GridLayout(5, 1));
 
-        btn_mant.setText("jButton5");
+        btn_mant.setText("Mantenimiento");
         pn_extras.add(btn_mant);
 
         javax.swing.GroupLayout pn_lateralLayout = new javax.swing.GroupLayout(pn_lateral);
@@ -110,16 +115,7 @@ public class main extends javax.swing.JFrame {
 
         pn_contenedor.setBackground(new java.awt.Color(0, 0, 102));
 
-        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
-        escritorio.setLayout(escritorioLayout);
-        escritorioLayout.setHorizontalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
-        );
-        escritorioLayout.setVerticalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        escritorio.setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout pn_contenedorLayout = new javax.swing.GroupLayout(pn_contenedor);
         pn_contenedor.setLayout(pn_contenedorLayout);
@@ -140,6 +136,19 @@ public class main extends javax.swing.JFrame {
         jMenuBar1.add(archivo);
 
         m_Grupios.setText("Grupos");
+
+        mi_grupoAgregar.setText("Agregar Grupo");
+        m_Grupios.add(mi_grupoAgregar);
+
+        mi_grupoConsultar.setText("Consultar/Actualizar");
+        m_Grupios.add(mi_grupoConsultar);
+
+        mi_grupoEliminar.setText("Eliminar");
+        m_Grupios.add(mi_grupoEliminar);
+
+        mi_grupoReportes.setText("Reportes");
+        m_Grupios.add(mi_grupoReportes);
+
         jMenuBar1.add(m_Grupios);
 
         m_tutores.setText("Tutores");
@@ -191,11 +200,16 @@ public class main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_gruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gruposActionPerformed
-        //Obtengo el tamaño del desktopPane
-
-        JInternalFrame vHija = new JInternalFrame("Grupos", true, true, true, true);
+        
+        //Si hay una ventana de tipo grupos, entonces no crea una nueva
+        String titulo = "Grupos";
+        for (JInternalFrame i: escritorio.getAllFrames()) {
+            if(i.getTitle().equals(titulo)) return;
+        }
+        
+        //Pero si no existe, crea una nueva ventana
+        JInternalFrame vHija = new JInternalFrame(titulo, true,true,true,false);
         Grupos hijo = new Grupos();
-
         vHija.add(hijo);
         vHija.pack();
         vHija.setVisible(true);
@@ -243,6 +257,10 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem mi_cerrar;
     private javax.swing.JMenuItem mi_consultarActualizarAlumno;
     private javax.swing.JMenuItem mi_consultarTutor;
+    private javax.swing.JMenuItem mi_grupoAgregar;
+    private javax.swing.JMenuItem mi_grupoConsultar;
+    private javax.swing.JMenuItem mi_grupoEliminar;
+    private javax.swing.JMenuItem mi_grupoReportes;
     private javax.swing.JPanel pn_contenedor;
     private org.jdesktop.swingx.JXPanel pn_extras;
     private org.jdesktop.swingx.JXPanel pn_lateral;
