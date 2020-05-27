@@ -10,9 +10,9 @@ import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
 
-public class main extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame {
 
-    public main() {
+    public VentanaPrincipal() {
         initComponents();
         this.setTitle("Sussana");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -116,7 +116,7 @@ public class main extends javax.swing.JFrame {
 
         pn_contenedor.setBackground(new java.awt.Color(0, 0, 102));
 
-        escritorio.setLayout(new java.awt.GridLayout());
+        escritorio.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout pn_contenedorLayout = new javax.swing.GroupLayout(pn_contenedor);
         pn_contenedor.setLayout(pn_contenedorLayout);
@@ -235,7 +235,7 @@ public class main extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new main().setVisible(true);
+            new VentanaPrincipal().setVisible(true);
         });
     }
 
