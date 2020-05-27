@@ -8,6 +8,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.MaterialOceanicTheme;
 
 public class main extends javax.swing.JFrame {
 
@@ -229,7 +230,7 @@ public class main extends javax.swing.JFrame {
         }
 
         if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel) {
-            MaterialLookAndFeel.changeTheme(new MaterialLiteTheme());
+            MaterialLookAndFeel.changeTheme(new MaterialOceanicTheme());
         }
 
         /* Create and display the form */
