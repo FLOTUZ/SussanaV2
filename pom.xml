@@ -11,6 +11,11 @@
             <artifactId>material-ui-swing</artifactId>
             <version>1.1.1-rc3</version>
         </dependency>
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
     </dependencies>
     
     <repositories>
