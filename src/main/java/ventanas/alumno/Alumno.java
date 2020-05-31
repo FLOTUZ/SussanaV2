@@ -51,7 +51,7 @@ public class Alumno extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         li_genHistorial = new javax.swing.JList<>();
-        jPanel2 = new javax.swing.JPanel();
+        pn_anadirAlumno = new javax.swing.JPanel();
         pn_buscarAlumno = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         tf_buscar = new javax.swing.JTextField();
@@ -69,6 +69,7 @@ public class Alumno extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        pn_elimnarAlumno = new javax.swing.JPanel();
 
         pn_general.setLayout(new java.awt.GridLayout(2, 1));
 
@@ -171,7 +172,7 @@ public class Alumno extends javax.swing.JPanel {
         tf_genGrupo.setEditable(false);
 
         btn_genEditar.setText("Editar");
-        btn_genEditar.setToolTipText("Editar datos del alumno");
+        btn_genEditar.setToolTipText("Actualizar datos del alumno");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -275,18 +276,18 @@ public class Alumno extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("General", pn_general);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pn_anadirAlumnoLayout = new javax.swing.GroupLayout(pn_anadirAlumno);
+        pn_anadirAlumno.setLayout(pn_anadirAlumnoLayout);
+        pn_anadirAlumnoLayout.setHorizontalGroup(
+            pn_anadirAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 672, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pn_anadirAlumnoLayout.setVerticalGroup(
+            pn_anadirAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 552, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Añadir Alumno", jPanel2);
+        jTabbedPane1.addTab("Añadir Alumno", pn_anadirAlumno);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Resultado de busqueda");
@@ -438,6 +439,19 @@ public class Alumno extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Buscar Alumno", pn_buscarAlumno);
 
+        javax.swing.GroupLayout pn_elimnarAlumnoLayout = new javax.swing.GroupLayout(pn_elimnarAlumno);
+        pn_elimnarAlumno.setLayout(pn_elimnarAlumnoLayout);
+        pn_elimnarAlumnoLayout.setHorizontalGroup(
+            pn_elimnarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 672, Short.MAX_VALUE)
+        );
+        pn_elimnarAlumnoLayout.setVerticalGroup(
+            pn_elimnarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 552, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Eliminar Alumno", pn_elimnarAlumno);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -470,7 +484,6 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -481,9 +494,11 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JList<String> li_genHistorial;
     private javax.swing.JPanel pn_accionesBotones;
+    private javax.swing.JPanel pn_anadirAlumno;
     private javax.swing.JPanel pn_busAcciones;
     private javax.swing.JPanel pn_buscarAlumno;
     private javax.swing.JPanel pn_detallesAlumno;
+    private javax.swing.JPanel pn_elimnarAlumno;
     private javax.swing.JPanel pn_genTabla;
     private javax.swing.JPanel pn_general;
     private javax.swing.JTable tb_genConcenradoAlumnos;
