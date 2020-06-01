@@ -1,6 +1,5 @@
 package com.sussana.sussanav2;
 
-
 import ventanas.grupo.Grupos;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -9,6 +8,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
+import ventanas.alumno.Alumno;
+import ventanas.tutor.Tutor;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -16,7 +17,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Sussana");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -84,9 +85,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pn_menuBotones.add(btn_grupos);
 
         btn_tutores.setText("Tutores");
+        btn_tutores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tutoresActionPerformed(evt);
+            }
+        });
         pn_menuBotones.add(btn_tutores);
 
         btn_alumnos.setText("Alumnos");
+        btn_alumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_alumnosActionPerformed(evt);
+            }
+        });
         pn_menuBotones.add(btn_alumnos);
 
         pn_extras.setLayout(new java.awt.GridLayout(5, 1));
@@ -168,6 +179,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         m_alumnos.setText("Alumnos");
 
         mi_consultarActualizarAlumno.setText("Consultar/Actualizar alumno por NC");
+        mi_consultarActualizarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_consultarActualizarAlumnoActionPerformed(evt);
+            }
+        });
         m_alumnos.add(mi_consultarActualizarAlumno);
 
         mi_altaAlumno.setText("Alta alumno");
@@ -201,15 +217,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_gruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gruposActionPerformed
-        
+
         //Si hay una ventana de tipo grupos, entonces no crea una nueva
         String titulo = "Grupos";
-        for (JInternalFrame i: escritorio.getAllFrames()) {
-            if(i.getTitle().equals(titulo)) return;
+        for (JInternalFrame i : escritorio.getAllFrames()) {
+            if (i.getTitle().equals(titulo)) {
+                return;
+            }
         }
-        
+
         //Pero si no existe, crea una nueva ventana
-        JInternalFrame vHija = new JInternalFrame(titulo, true,true,true,false);
+        JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
         Grupos hijo = new Grupos();
         vHija.add(hijo);
         vHija.pack();
@@ -218,6 +236,47 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.getDesktopManager().activateFrame(vHija);
 
     }//GEN-LAST:event_btn_gruposActionPerformed
+
+    private void btn_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alumnosActionPerformed
+        //Si hay una ventana de tipo grupos, entonces no crea una nueva
+        String titulo = "Alumnos";
+        for (JInternalFrame i : escritorio.getAllFrames()) {
+            if (i.getTitle().equals(titulo)) {
+                return;
+            }
+        }
+
+        //Pero si no existe, crea una nueva ventana
+        JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
+        Alumno hijo = new Alumno();
+        vHija.add(hijo);
+        vHija.pack();
+        vHija.setVisible(true);
+        escritorio.add(vHija);
+        escritorio.getDesktopManager().activateFrame(vHija);
+    }//GEN-LAST:event_btn_alumnosActionPerformed
+
+    private void mi_consultarActualizarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_consultarActualizarAlumnoActionPerformed
+
+    }//GEN-LAST:event_mi_consultarActualizarAlumnoActionPerformed
+
+    private void btn_tutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tutoresActionPerformed
+        String titulo = "Tutores";
+        for (JInternalFrame i : escritorio.getAllFrames()) {
+            if (i.getTitle().equals(titulo)) {
+                return;
+            }
+        }
+
+        //Pero si no existe, crea una nueva ventana
+        JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
+        Tutor hijo = new Tutor();
+        vHija.add(hijo);
+        vHija.pack();
+        vHija.setVisible(true);
+        escritorio.add(vHija);
+        escritorio.getDesktopManager().activateFrame(vHija);
+    }//GEN-LAST:event_btn_tutoresActionPerformed
 
     /**
      * @param args the command line arguments

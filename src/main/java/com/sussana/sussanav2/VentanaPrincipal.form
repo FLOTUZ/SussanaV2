@@ -74,6 +74,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar/Actualizar alumno por NC"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mi_consultarActualizarAlumnoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mi_altaAlumno">
               <Properties>
@@ -211,11 +214,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tutores"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_tutoresActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_alumnos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Alumnos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_alumnosActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

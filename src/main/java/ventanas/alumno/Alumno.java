@@ -27,7 +27,7 @@ public class Alumno extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tbp_pestanas = new javax.swing.JTabbedPane();
         pn_general = new javax.swing.JPanel();
         pn_genTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -296,7 +296,7 @@ public class Alumno extends javax.swing.JPanel {
 
         pn_general.add(pn_detallesAlumno);
 
-        jTabbedPane1.addTab("General", pn_general);
+        tbp_pestanas.addTab("General", pn_general);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel14.setText("Agregar Alumno");
@@ -322,12 +322,6 @@ public class Alumno extends javax.swing.JPanel {
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setText("NC");
-
-        tf_anaNC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_anaNCActionPerformed(evt);
-            }
-        });
 
         cbx_anaSemestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -417,7 +411,7 @@ public class Alumno extends javax.swing.JPanel {
                 .addContainerGap(191, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Añadir Alumno", pn_anadirAlumno);
+        tbp_pestanas.addTab("Añadir Alumno", pn_anadirAlumno);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Resultado de busqueda");
@@ -567,7 +561,7 @@ public class Alumno extends javax.swing.JPanel {
                 .addComponent(pn_busAcciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Buscar Alumno", pn_buscarAlumno);
+        tbp_pestanas.addTab("Buscar Alumno", pn_buscarAlumno);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -584,6 +578,8 @@ public class Alumno extends javax.swing.JPanel {
         jButton5.setText("Eliminar");
         jButton5.setEnabled(false);
 
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(0, 204, 51));
         jButton6.setText("Verificar");
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -600,21 +596,18 @@ public class Alumno extends javax.swing.JPanel {
                 .addGroup(pn_elimnarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4)
                     .addGroup(pn_elimnarAlumnoLayout.createSequentialGroup()
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_elimnarAlumnoLayout.createSequentialGroup()
                         .addGroup(pn_elimnarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pn_elimnarAlumnoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton5)
-                                .addGap(18, 18, 18))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton6))
                             .addGroup(pn_elimnarAlumnoLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jButton6)))
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 82, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pn_elimnarAlumnoLayout.setVerticalGroup(
@@ -634,23 +627,19 @@ public class Alumno extends javax.swing.JPanel {
                 .addContainerGap(238, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Eliminar Alumno", pn_elimnarAlumno);
+        tbp_pestanas.addTab("Eliminar Alumno", pn_elimnarAlumno);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(tbp_pestanas, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 585, Short.MAX_VALUE)
+            .addComponent(tbp_pestanas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 585, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tf_anaNCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_anaNCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_anaNCActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -696,7 +685,6 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JList<String> li_genHistorial;
@@ -709,6 +697,7 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JPanel pn_genTabla;
     private javax.swing.JPanel pn_general;
     private javax.swing.JTable tb_genConcenradoAlumnos;
+    private javax.swing.JTabbedPane tbp_pestanas;
     private javax.swing.JTextField tf_anaApellidos;
     private javax.swing.JTextField tf_anaNC;
     private javax.swing.JTextField tf_anaNombre;
