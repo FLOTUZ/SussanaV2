@@ -21,21 +21,6 @@
             <Property name="text" type="java.lang.String" value="Grupos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mi_grupoAgregar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar Grupo"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mi_grupoConsultar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar/Actualizar"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mi_grupoEliminar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Eliminar"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mi_grupoReportes">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reportes"/>
@@ -48,19 +33,9 @@
             <Property name="text" type="java.lang.String" value="Tutores"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mi_consultarTutor">
+            <MenuItem class="javax.swing.JMenuItem" name="mi_tutoresReportes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar/Actualizar Tutor"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mi_altaTutor">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Alta de tutor"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mi_bajaTutor">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Baja tutor"/>
+                <Property name="text" type="java.lang.String" value="Reportes"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -70,19 +45,22 @@
             <Property name="text" type="java.lang.String" value="Alumnos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mi_consultarActualizarAlumno">
+            <MenuItem class="javax.swing.JMenuItem" name="mi_reporteAlumnos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar/Actualizar alumno por NC"/>
+                <Property name="text" type="java.lang.String" value="Reporte"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mi_altaAlumno">
+            <MenuItem class="javax.swing.JMenuItem" name="mi_canalizacionPsicologica">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Alta alumno"/>
+                <Property name="text" type="java.lang.String" value="Canalizaci&#xf3;n psicologica"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mi_canalizacionPsicologicaActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mi_bajaAlumno">
+            <MenuItem class="javax.swing.JMenuItem" name="mi_solicitudCreditos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Baja alumno"/>
+                <Property name="text" type="java.lang.String" value="Solicitud credito"/>
               </Properties>
             </MenuItem>
           </SubComponents>

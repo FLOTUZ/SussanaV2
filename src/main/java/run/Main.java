@@ -20,10 +20,10 @@ public class Main {
         if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel) {
             MaterialLookAndFeel.changeTheme(new MaterialLiteTheme());
         }
-
+        
         VentanaPrincipal v = new VentanaPrincipal();
         v.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+        
         v.setVisible(true);
         v.setLocationRelativeTo(null);
     }

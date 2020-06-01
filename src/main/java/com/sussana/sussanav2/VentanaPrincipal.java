@@ -1,12 +1,12 @@
 package com.sussana.sussanav2;
 
+import canalizacion.Canalizacion;
 import ventanas.grupo.Grupos;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.themes.MaterialLiteTheme;
 import mdlaf.themes.MaterialOceanicTheme;
 import ventanas.alumno.Alumno;
 import ventanas.tutor.Tutor;
@@ -39,18 +39,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         archivo = new javax.swing.JMenu();
         mi_cerrar = new javax.swing.JMenuItem();
         m_Grupios = new javax.swing.JMenu();
-        mi_grupoAgregar = new javax.swing.JMenuItem();
-        mi_grupoConsultar = new javax.swing.JMenuItem();
-        mi_grupoEliminar = new javax.swing.JMenuItem();
         mi_grupoReportes = new javax.swing.JMenuItem();
         m_tutores = new javax.swing.JMenu();
-        mi_consultarTutor = new javax.swing.JMenuItem();
-        mi_altaTutor = new javax.swing.JMenuItem();
-        mi_bajaTutor = new javax.swing.JMenuItem();
+        mi_tutoresReportes = new javax.swing.JMenuItem();
         m_alumnos = new javax.swing.JMenu();
-        mi_consultarActualizarAlumno = new javax.swing.JMenuItem();
-        mi_altaAlumno = new javax.swing.JMenuItem();
-        mi_bajaAlumno = new javax.swing.JMenuItem();
+        mi_reporteAlumnos = new javax.swing.JMenuItem();
+        mi_canalizacionPsicologica = new javax.swing.JMenuItem();
+        mi_solicitudCreditos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,15 +144,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         m_Grupios.setText("Grupos");
 
-        mi_grupoAgregar.setText("Agregar Grupo");
-        m_Grupios.add(mi_grupoAgregar);
-
-        mi_grupoConsultar.setText("Consultar/Actualizar");
-        m_Grupios.add(mi_grupoConsultar);
-
-        mi_grupoEliminar.setText("Eliminar");
-        m_Grupios.add(mi_grupoEliminar);
-
         mi_grupoReportes.setText("Reportes");
         m_Grupios.add(mi_grupoReportes);
 
@@ -165,27 +151,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         m_tutores.setText("Tutores");
 
-        mi_consultarTutor.setText("Consultar/Actualizar Tutor");
-        m_tutores.add(mi_consultarTutor);
-
-        mi_altaTutor.setText("Alta de tutor");
-        m_tutores.add(mi_altaTutor);
-
-        mi_bajaTutor.setText("Baja tutor");
-        m_tutores.add(mi_bajaTutor);
+        mi_tutoresReportes.setText("Reportes");
+        m_tutores.add(mi_tutoresReportes);
 
         jMenuBar1.add(m_tutores);
 
         m_alumnos.setText("Alumnos");
 
-        mi_consultarActualizarAlumno.setText("Consultar/Actualizar alumno por NC");
-        m_alumnos.add(mi_consultarActualizarAlumno);
+        mi_reporteAlumnos.setText("Reporte");
+        m_alumnos.add(mi_reporteAlumnos);
 
-        mi_altaAlumno.setText("Alta alumno");
-        m_alumnos.add(mi_altaAlumno);
+        mi_canalizacionPsicologica.setText("Canalización psicologica");
+        mi_canalizacionPsicologica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_canalizacionPsicologicaActionPerformed(evt);
+            }
+        });
+        m_alumnos.add(mi_canalizacionPsicologica);
 
-        mi_bajaAlumno.setText("Baja alumno");
-        m_alumnos.add(mi_bajaAlumno);
+        mi_solicitudCreditos.setText("Solicitud credito");
+        m_alumnos.add(mi_solicitudCreditos);
 
         jMenuBar1.add(m_alumnos);
 
@@ -216,9 +201,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //Si hay una ventana de tipo grupos, entonces no crea una nueva
         String titulo = "Grupos";
         for (JInternalFrame i : escritorio.getAllFrames()) {
-            if (i.getTitle().equals(titulo)) {
-                return;
-            }
+            i.dispose();
         }
 
         //Pero si no existe, crea una nueva ventana
@@ -236,9 +219,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //Si hay una ventana de tipo grupos, entonces no crea una nueva
         String titulo = "Alumnos";
         for (JInternalFrame i : escritorio.getAllFrames()) {
-            if (i.getTitle().equals(titulo)) {
-                return;
-            }
+            i.dispose();
         }
 
         //Pero si no existe, crea una nueva ventana
@@ -254,9 +235,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btn_tutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tutoresActionPerformed
         String titulo = "Tutores";
         for (JInternalFrame i : escritorio.getAllFrames()) {
-            if (i.getTitle().equals(titulo)) {
-                return;
-            }
+            i.dispose();
         }
 
         //Pero si no existe, crea una nueva ventana
@@ -268,6 +247,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(vHija);
         escritorio.getDesktopManager().activateFrame(vHija);
     }//GEN-LAST:event_btn_tutoresActionPerformed
+
+    private void mi_canalizacionPsicologicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_canalizacionPsicologicaActionPerformed
+        String titulo = "Canalización psicologica";
+        for (JInternalFrame i : escritorio.getAllFrames()) {
+            i.dispose();
+        }
+
+        //Pero si no existe, crea una nueva ventana
+        JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
+        Canalizacion hijo = new Canalizacion();
+        vHija.add(hijo);
+        vHija.pack();
+        vHija.setVisible(true);
+        escritorio.add(vHija);
+        escritorio.getDesktopManager().activateFrame(vHija);
+    }//GEN-LAST:event_mi_canalizacionPsicologicaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,17 +296,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu m_Grupios;
     private javax.swing.JMenu m_alumnos;
     private javax.swing.JMenu m_tutores;
-    private javax.swing.JMenuItem mi_altaAlumno;
-    private javax.swing.JMenuItem mi_altaTutor;
-    private javax.swing.JMenuItem mi_bajaAlumno;
-    private javax.swing.JMenuItem mi_bajaTutor;
+    private javax.swing.JMenuItem mi_canalizacionPsicologica;
     private javax.swing.JMenuItem mi_cerrar;
-    private javax.swing.JMenuItem mi_consultarActualizarAlumno;
-    private javax.swing.JMenuItem mi_consultarTutor;
-    private javax.swing.JMenuItem mi_grupoAgregar;
-    private javax.swing.JMenuItem mi_grupoConsultar;
-    private javax.swing.JMenuItem mi_grupoEliminar;
     private javax.swing.JMenuItem mi_grupoReportes;
+    private javax.swing.JMenuItem mi_reporteAlumnos;
+    private javax.swing.JMenuItem mi_solicitudCreditos;
+    private javax.swing.JMenuItem mi_tutoresReportes;
     private javax.swing.JPanel pn_contenedor;
     private org.jdesktop.swingx.JXPanel pn_extras;
     private org.jdesktop.swingx.JXPanel pn_lateral;
