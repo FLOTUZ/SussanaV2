@@ -179,11 +179,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         m_alumnos.setText("Alumnos");
 
         mi_consultarActualizarAlumno.setText("Consultar/Actualizar alumno por NC");
-        mi_consultarActualizarAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mi_consultarActualizarAlumnoActionPerformed(evt);
-            }
-        });
         m_alumnos.add(mi_consultarActualizarAlumno);
 
         mi_altaAlumno.setText("Alta alumno");
@@ -255,10 +250,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(vHija);
         escritorio.getDesktopManager().activateFrame(vHija);
     }//GEN-LAST:event_btn_alumnosActionPerformed
-
-    private void mi_consultarActualizarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_consultarActualizarAlumnoActionPerformed
-
-    }//GEN-LAST:event_mi_consultarActualizarAlumnoActionPerformed
 
     private void btn_tutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tutoresActionPerformed
         String titulo = "Tutores";
