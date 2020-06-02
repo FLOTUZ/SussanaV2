@@ -90,13 +90,16 @@ ENGINE = InnoDB;
 -- Table `SUSSANA`.`credito`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SUSSANA`.`credito` (
-  `idCredito` INT NOT NULL AUTO_INCREMENT,
+  `idCredito` INT NOT NULL,
+  `folio` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `status` TEXT NULL,
   `fecha` DATE NULL,
   `tipo` VARCHAR(45) NULL,
   `Alumno_idAlumno` INT NOT NULL,
   PRIMARY KEY (`idCredito`),
   INDEX `fk_Credito_Alumno1_idx` (`Alumno_idAlumno` ASC) ,
   UNIQUE INDEX `idCredito_UNIQUE` (`idCredito` ASC) ,
+  UNIQUE INDEX `folio_UNIQUE` (`folio` ASC) ,
   CONSTRAINT `fk_Credito_Alumno1`
     FOREIGN KEY (`Alumno_idAlumno`)
     REFERENCES `SUSSANA`.`alumno` (`idAlumno`)

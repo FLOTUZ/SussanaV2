@@ -276,6 +276,8 @@ public class Canalizacion extends javax.swing.JPanel {
         //Se muestra el panel de seleccionar alumno
         Seleccionar_alumno seleccionar = new Seleccionar_alumno();
         
+        
+        //Se muestra un panel donde se selecciona el alumno
         JOptionPane.showInternalMessageDialog(this,seleccionar);
         
         //Se obtiene alumno seleccionado

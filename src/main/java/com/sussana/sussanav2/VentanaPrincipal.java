@@ -1,6 +1,7 @@
 package com.sussana.sussanav2;
 
 import canalizacion.Canalizacion;
+import credito.Credito;
 import ventanas.grupo.Grupos;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -170,6 +171,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         m_alumnos.add(mi_canalizacionPsicologica);
 
         mi_solicitudCreditos.setText("Solicitud credito");
+        mi_solicitudCreditos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_solicitudCreditosActionPerformed(evt);
+            }
+        });
         m_alumnos.add(mi_solicitudCreditos);
 
         jMenuBar1.add(m_alumnos);
@@ -263,6 +269,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(vHija);
         escritorio.getDesktopManager().activateFrame(vHija);
     }//GEN-LAST:event_mi_canalizacionPsicologicaActionPerformed
+
+    private void mi_solicitudCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_solicitudCreditosActionPerformed
+        String titulo = "Solicitu del credito";
+        for (JInternalFrame i : escritorio.getAllFrames()) {
+            i.dispose();
+        }
+
+        //Pero si no existe, crea una nueva ventana
+        JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
+        Credito hijo = new Credito();
+        vHija.add(hijo);
+        vHija.pack();
+        vHija.setVisible(true);
+        escritorio.add(vHija);
+        escritorio.getDesktopManager().activateFrame(vHija);
+    }//GEN-LAST:event_mi_solicitudCreditosActionPerformed
 
     /**
      * @param args the command line arguments
