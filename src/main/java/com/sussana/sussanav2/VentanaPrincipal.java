@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import mantenimiento.Mantenimiento;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialOceanicTheme;
 import ventanas.alumno.Alumno;
@@ -99,6 +100,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pn_extras.setLayout(new java.awt.GridLayout(5, 1));
 
         btn_mant.setText("Mantenimiento");
+        btn_mant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mantActionPerformed(evt);
+            }
+        });
         pn_extras.add(btn_mant);
 
         javax.swing.GroupLayout pn_lateralLayout = new javax.swing.GroupLayout(pn_lateral);
@@ -271,7 +277,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mi_canalizacionPsicologicaActionPerformed
 
     private void mi_solicitudCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_solicitudCreditosActionPerformed
-        String titulo = "Solicitu del credito";
+        String titulo = "Solicitud del credito";
         for (JInternalFrame i : escritorio.getAllFrames()) {
             i.dispose();
         }
@@ -285,6 +291,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(vHija);
         escritorio.getDesktopManager().activateFrame(vHija);
     }//GEN-LAST:event_mi_solicitudCreditosActionPerformed
+
+    private void btn_mantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mantActionPerformed
+        String titulo = "Mantenimiento";
+        for (JInternalFrame i : escritorio.getAllFrames()) {
+            i.dispose();
+        }
+
+        //Pero si no existe, crea una nueva ventana
+        JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
+        Mantenimiento hijo = new Mantenimiento();
+        vHija.add(hijo);
+        vHija.pack();
+        vHija.setVisible(true);
+        escritorio.add(vHija);
+        escritorio.getDesktopManager().activateFrame(vHija);
+    }//GEN-LAST:event_btn_mantActionPerformed
 
     /**
      * @param args the command line arguments
