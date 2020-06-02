@@ -1,5 +1,6 @@
 package run;
 
+import Conector.Conector;
 import com.sussana.sussanav2.VentanaPrincipal;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
