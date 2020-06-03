@@ -17,7 +17,8 @@ create procedure SELECT_alumnoByNC(NC int)
 -- @Autor: Emmanuel Esquivel Pardo
 -- ---------------------------------------------
 begin
-    select a.idAlumno, a.semestre, g.letra, p.nombre, p.apellidos, p.NC, c.nombre
+    select a.idAlumno, p.NC, p.nombre, p.apellidos, a.semestre, c.nombre as carrera, g.letra as grupo,
+           a.Grupo_idGrupo, a.Persona_idPersona, a.carrera_idcarrera
     from alumno a
              inner join persona p on a.Persona_idPersona = p.idPersona
              inner join carrera c on a.carrera_idcarrera = c.idcarrera
@@ -79,11 +80,14 @@ begin
             _carrera_idcarrera);
 end;
 
-create procedure UPDATE_alumno(_semestre int(4),
+create procedure UPDATE_alumno(_idAlumno int,
+                               _semestre int(4),
                                _idGrupo int,
-                               _idPersona int,
                                _idCarrera int,
-                               _idAlumno int)
+                               _NC int,
+                               _nombre varchar(45),
+                               _apellidos varchar(90),
+                               _idPersona int)
     -- ---------------------------------------------
 -- Se actualiza datos de alumno
 -- @Autor: Emmanuel Esquivel Pardo
@@ -93,9 +97,14 @@ begin
     UPDATE alumno a
     SET a.semestre          = _semestre,
         a.Grupo_idGrupo     = _idGrupo,
-        a.Persona_idPersona = _idPersona,
         a.carrera_idcarrera = _idCarrera
     WHERE a.idAlumno = _idAlumno;
+
+    UPDATE persona p
+    set p.nombre =_nombre,
+        p.apellidos = _apellidos,
+        p.NC = _NC
+    where p.idPersona = _idPersona;
 end;
 
 create procedure DELETE_alumno(_idAlumno int)
@@ -392,4 +401,26 @@ begin
     set @idPersona = IFNULL(@idPersona=0);
     select @idPersona;
     return @idPersona;
+end;
+
+create procedure SELECT_alumnos()
+-- ---------------------
+-- Se consultan los alumnos
+-- ---------------------
+begin
+    select a.idAlumno,
+           a.semestre,
+           a.Grupo_idGrupo,
+           a.Persona_idPersona,
+           a.carrera_idcarrera,
+           p.NC,
+           p.nombre,
+           p.apellidos,
+           c.nombre,
+           g.letra
+    from alumno a
+             inner join persona p on a.Persona_idPersona = p.idPersona
+             inner join grupo g on a.Grupo_idGrupo = g.idGrupo
+             inner join carrera c on a.carrera_idcarrera = c.idcarrera
+    order by NC ASC;
 end;

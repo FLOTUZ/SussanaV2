@@ -2,8 +2,9 @@
 call SELECT_alumnoByNC(?);
 call SELECT_alumnos();
 call INSERT_alumno(?,?,?,?,?,?);
-call UPDATE_alumno(?,?,?,?,?);
+call UPDATE_alumno(?,?,?,?,?, ?, ?, ?);
 call DELETE_alumno(?);
+
 -- Tabla persona
 call SELECT_personas();
 call SELECT_personasByNC();
