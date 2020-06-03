@@ -3,15 +3,15 @@ package VO_Y_DAO.VO;
 public class GrupoVO {
     private int idFrupo;
     private String letra;
-    private int semestre;
+    private int tutor_iddocente;
 
     public GrupoVO() {
     }
 
-    public GrupoVO(int idFrupo, String letra, int semestre) {
+    public GrupoVO(int idFrupo, String letra, int tutor_iddocente) {
         this.idFrupo = idFrupo;
         this.letra = letra;
-        this.semestre = semestre;
+        this.tutor_iddocente = tutor_iddocente;
     }
 
     public int getIdFrupo() {
@@ -30,16 +30,17 @@ public class GrupoVO {
         this.letra = letra;
     }
 
-    public int getSemestre() {
-        return semestre;
+    public int getTutor_iddocente() {
+        return tutor_iddocente;
     }
 
-    public void setSemestre(int semestre) {
-        this.semestre = semestre;
+    public void setTutor_iddocente(int tutor_iddocente) {
+        this.tutor_iddocente = tutor_iddocente;
     }
 
     @Override
     public String toString() {
-        return "GrupoVO{" + "idFrupo=" + idFrupo + ", letra=" + letra + ", semestre=" + semestre + '}';
+        return "GrupoVO{" + "idFrupo=" + idFrupo + ", letra=" + letra + ", tutor_iddocente=" + tutor_iddocente + '}';
     }
+    
 }

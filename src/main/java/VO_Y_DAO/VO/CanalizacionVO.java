@@ -6,7 +6,7 @@ import java.util.Date;
 public class CanalizacionVO {
     private int idCanalizacion;
     private Date fecha;
-    private int Tutor_idTutor;
+    private String tutor;
     private int Alumno_idAlumno;
     private int carrera_idCarrera;
     private boolean trizteza;
@@ -27,10 +27,10 @@ public class CanalizacionVO {
     public CanalizacionVO() {
     }
 
-    public CanalizacionVO(int idCanalizacion, Date fecha, int Tutor_idTutor, int Alumno_idAlumno, int carrera_idCarrera, boolean trizteza, boolean angustia, boolean ansiedad, boolean desesperacion, boolean llanto, boolean conduta, boolean animo, boolean exitacion, boolean irritabilidad, boolean drogas, boolean aprendizaje, boolean autoAgresiones, String otro, String descripcion) {
+    public CanalizacionVO(int idCanalizacion, Date fecha, String tutor, int Alumno_idAlumno, int carrera_idCarrera, boolean trizteza, boolean angustia, boolean ansiedad, boolean desesperacion, boolean llanto, boolean conduta, boolean animo, boolean exitacion, boolean irritabilidad, boolean drogas, boolean aprendizaje, boolean autoAgresiones, String otro, String descripcion) {
         this.idCanalizacion = idCanalizacion;
         this.fecha = fecha;
-        this.Tutor_idTutor = Tutor_idTutor;
+        this.tutor = tutor;
         this.Alumno_idAlumno = Alumno_idAlumno;
         this.carrera_idCarrera = carrera_idCarrera;
         this.trizteza = trizteza;
@@ -65,12 +65,12 @@ public class CanalizacionVO {
         this.fecha = fecha;
     }
 
-    public int getTutor_idTutor() {
-        return Tutor_idTutor;
+    public String getTutor() {
+        return tutor;
     }
 
-    public void setTutor_idTutor(int Tutor_idTutor) {
-        this.Tutor_idTutor = Tutor_idTutor;
+    public void setTutor(String tutor) {
+        this.tutor = tutor;
     }
 
     public int getAlumno_idAlumno() {
@@ -203,7 +203,7 @@ public class CanalizacionVO {
 
     @Override
     public String toString() {
-        return "CanalizacionVO{" + "idCanalizacion=" + idCanalizacion + ", fecha=" + fecha + ", Tutor_idTutor=" + Tutor_idTutor + ", Alumno_idAlumno=" + Alumno_idAlumno + ", carrera_idCarrera=" + carrera_idCarrera + ", trizteza=" + trizteza + ", angustia=" + angustia + ", ansiedad=" + ansiedad + ", desesperacion=" + desesperacion + ", llanto=" + llanto + ", conduta=" + conduta + ", animo=" + animo + ", exitacion=" + exitacion + ", irritabilidad=" + irritabilidad + ", drogas=" + drogas + ", aprendizaje=" + aprendizaje + ", autoAgresiones=" + autoAgresiones + ", otro=" + otro + ", descripcion=" + descripcion + '}';
+        return "CanalizacionVO{" + "idCanalizacion=" + idCanalizacion + ", fecha=" + fecha + ", tutor=" + tutor + ", Alumno_idAlumno=" + Alumno_idAlumno + ", carrera_idCarrera=" + carrera_idCarrera + ", trizteza=" + trizteza + ", angustia=" + angustia + ", ansiedad=" + ansiedad + ", desesperacion=" + desesperacion + ", llanto=" + llanto + ", conduta=" + conduta + ", animo=" + animo + ", exitacion=" + exitacion + ", irritabilidad=" + irritabilidad + ", drogas=" + drogas + ", aprendizaje=" + aprendizaje + ", autoAgresiones=" + autoAgresiones + ", otro=" + otro + ", descripcion=" + descripcion + '}';
     }
     
 }

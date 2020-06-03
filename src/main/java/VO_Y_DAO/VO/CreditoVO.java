@@ -74,4 +74,5 @@ public class CreditoVO {
     public String toString() {
         return "CreditoVO{" + "idCredito=" + idCredito + ", folio=" + folio + ", status=" + status + ", fecha=" + fecha + ", tipo=" + tipo + ", Alumno_idAlumno=" + Alumno_idAlumno + '}';
     }
+    
 }

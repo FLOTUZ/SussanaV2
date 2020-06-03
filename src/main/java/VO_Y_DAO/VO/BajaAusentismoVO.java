@@ -10,14 +10,14 @@ public class BajaAusentismoVO {
     private String docenteReporta;
     private String asignatura;
     private int clave;
-    private List<String> fechasInasistencia;
+    private String fechasInasistencia;
     private String posibleCausa;
     private int alumno_idAlumno;
 
     public BajaAusentismoVO() {
     }
 
-    public BajaAusentismoVO(int idbajaAusentismo, Date fecha, String docenteReporta, String asignatura, int clave, List<String> fechasInasistencia, String posibleCausa, int alumno_idAlumno) {
+    public BajaAusentismoVO(int idbajaAusentismo, Date fecha, String docenteReporta, String asignatura, int clave, String fechasInasistencia, String posibleCausa, int alumno_idAlumno) {
         this.idbajaAusentismo = idbajaAusentismo;
         this.fecha = fecha;
         this.docenteReporta = docenteReporta;
@@ -68,11 +68,11 @@ public class BajaAusentismoVO {
         this.clave = clave;
     }
 
-    public List<String> getFechasInasistencia() {
+    public String getFechasInasistencia() {
         return fechasInasistencia;
     }
 
-    public void setFechasInasistencia(List<String> fechasInasistencia) {
+    public void setFechasInasistencia(String fechasInasistencia) {
         this.fechasInasistencia = fechasInasistencia;
     }
 
@@ -96,5 +96,4 @@ public class BajaAusentismoVO {
     public String toString() {
         return "BajaAusentismoVO{" + "idbajaAusentismo=" + idbajaAusentismo + ", fecha=" + fecha + ", docenteReporta=" + docenteReporta + ", asignatura=" + asignatura + ", clave=" + clave + ", fechasInasistencia=" + fechasInasistencia + ", posibleCausa=" + posibleCausa + ", alumno_idAlumno=" + alumno_idAlumno + '}';
     }
-    
 }

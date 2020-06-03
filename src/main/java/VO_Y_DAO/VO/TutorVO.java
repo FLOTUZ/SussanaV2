@@ -1,6 +1,6 @@
 package VO_Y_DAO.VO;
 
-public class DocenteVO {
+public class TutorVO {
     private int iddocente;
     private String departamento;
     private String puesto;
@@ -9,10 +9,10 @@ public class DocenteVO {
     private int extension;
     private int persona_idPersona;
 
-    public DocenteVO() {
+    public TutorVO() {
     }
 
-    public DocenteVO(int iddocente, String departamento, String puesto, String correo, int telefono, int extension, int persona_idPersona) {
+    public TutorVO(int iddocente, String departamento, String puesto, String correo, int telefono, int extension, int persona_idPersona) {
         this.iddocente = iddocente;
         this.departamento = departamento;
         this.puesto = puesto;
@@ -80,6 +80,6 @@ public class DocenteVO {
 
     @Override
     public String toString() {
-        return "DocenteVO{" + "iddocente=" + iddocente + ", departamento=" + departamento + ", puesto=" + puesto + ", correo=" + correo + ", telefono=" + telefono + ", extension=" + extension + ", persona_idPersona=" + persona_idPersona + '}';
+        return "TutorVO{" + "iddocente=" + iddocente + ", departamento=" + departamento + ", puesto=" + puesto + ", correo=" + correo + ", telefono=" + telefono + ", extension=" + extension + ", persona_idPersona=" + persona_idPersona + '}';
     }
 }
