@@ -1,5 +1,6 @@
 package com.sussana.sussanav2;
 
+import bajaAusentismo.BajaAusentismo;
 import canalizacion.Canalizacion;
 import credito.Credito;
 import ventanas.grupo.Grupos;
@@ -48,6 +49,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mi_reporteAlumnos = new javax.swing.JMenuItem();
         mi_canalizacionPsicologica = new javax.swing.JMenuItem();
         mi_solicitudCreditos = new javax.swing.JMenuItem();
+        mi_bajaAusentismo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -184,6 +186,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         m_alumnos.add(mi_solicitudCreditos);
 
+        mi_bajaAusentismo.setText("Baja por ausentismo");
+        mi_bajaAusentismo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_bajaAusentismoActionPerformed(evt);
+            }
+        });
+        m_alumnos.add(mi_bajaAusentismo);
+
         jMenuBar1.add(m_alumnos);
 
         setJMenuBar(jMenuBar1);
@@ -308,6 +318,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.getDesktopManager().activateFrame(vHija);
     }//GEN-LAST:event_btn_mantActionPerformed
 
+    private void mi_bajaAusentismoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_bajaAusentismoActionPerformed
+        String titulo = "Baja Ausentismo";
+        for (JInternalFrame i : escritorio.getAllFrames()) {
+            i.dispose();
+        }
+
+        //Pero si no existe, crea una nueva ventana
+        JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
+        BajaAusentismo hijo = new BajaAusentismo();
+        vHija.add(hijo);
+        vHija.pack();
+        vHija.setVisible(true);
+        escritorio.add(vHija);
+        escritorio.getDesktopManager().activateFrame(vHija);
+    }//GEN-LAST:event_mi_bajaAusentismoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -340,6 +366,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu m_Grupios;
     private javax.swing.JMenu m_alumnos;
     private javax.swing.JMenu m_tutores;
+    private javax.swing.JMenuItem mi_bajaAusentismo;
     private javax.swing.JMenuItem mi_canalizacionPsicologica;
     private javax.swing.JMenuItem mi_cerrar;
     private javax.swing.JMenuItem mi_grupoReportes;
