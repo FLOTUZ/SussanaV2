@@ -58,7 +58,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `SUSSANA`.`alumno` (
   `idAlumno` INT NOT NULL AUTO_INCREMENT,
   `semestre` INT(1) NULL,
-  `carrera` VARCHAR(45) NULL,
   `Grupo_idGrupo` INT NOT NULL,
   `Persona_idPersona` INT NOT NULL,
   `carrera_idcarrera` INT NOT NULL,

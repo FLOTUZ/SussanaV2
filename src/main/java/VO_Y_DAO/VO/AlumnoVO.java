@@ -3,7 +3,6 @@ package VO_Y_DAO.VO;
 public class AlumnoVO {
     private int idAlumno;
     private int semestre;
-    private String carrera;
     private int Grupo_id_grupo;
     private int Persona_idPersona;
     private int carrera_idcarrera;
@@ -11,10 +10,9 @@ public class AlumnoVO {
     public AlumnoVO() {
     }
 
-    public AlumnoVO(int idAlumno, int semestre, String carrera, int Grupo_id_grupo, int Persona_idPersona, int carrera_idcarrera) {
+    public AlumnoVO(int idAlumno, int semestre, int Grupo_id_grupo, int Persona_idPersona, int carrera_idcarrera) {
         this.idAlumno = idAlumno;
         this.semestre = semestre;
-        this.carrera = carrera;
         this.Grupo_id_grupo = Grupo_id_grupo;
         this.Persona_idPersona = Persona_idPersona;
         this.carrera_idcarrera = carrera_idcarrera;
@@ -34,14 +32,6 @@ public class AlumnoVO {
 
     public void setSemestre(int semestre) {
         this.semestre = semestre;
-    }
-
-    public String getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(String carrera) {
-        this.carrera = carrera;
     }
 
     public int getGrupo_id_grupo() {
@@ -70,8 +60,7 @@ public class AlumnoVO {
 
     @Override
     public String toString() {
-        return "AlumnoVO{" + "idAlumno=" + idAlumno + ", semestre=" + semestre + ", carrera=" + carrera + ", Grupo_id_grupo=" + Grupo_id_grupo + ", Persona_idPersona=" + Persona_idPersona + ", carrera_idcarrera=" + carrera_idcarrera + '}';
+        return "AlumnoVO{" + "idAlumno=" + idAlumno + ", semestre=" + semestre + ", Grupo_id_grupo=" + Grupo_id_grupo + ", Persona_idPersona=" + Persona_idPersona + ", carrera_idcarrera=" + carrera_idcarrera + '}';
     }
-    
     
 }
