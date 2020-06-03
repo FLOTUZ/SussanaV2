@@ -22,7 +22,6 @@ USE `SUSSANA` ;
 CREATE TABLE IF NOT EXISTS `SUSSANA`.`grupo` (
   `idGrupo` INT NOT NULL AUTO_INCREMENT,
   `letra` VARCHAR(1) NULL,
-  `semestre` INT NULL,
   PRIMARY KEY (`idGrupo`),
   UNIQUE INDEX `idGrupo_UNIQUE` (`idGrupo` ASC) )
 ENGINE = InnoDB;
@@ -37,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `SUSSANA`.`persona` (
   `apellidos` VARCHAR(90) NULL,
   `NC` INT NULL,
   PRIMARY KEY (`idPersona`),
-  UNIQUE INDEX `idPersona_UNIQUE` (`idPersona` ASC))
+  UNIQUE INDEX `idPersona_UNIQUE` (`idPersona` ASC) )
 ENGINE = InnoDB;
 
 
@@ -57,7 +56,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SUSSANA`.`alumno` (
   `idAlumno` INT NOT NULL AUTO_INCREMENT,
-  `semestre` INT(1) NULL,
+  `semestre` INT(2) NULL,
   `Grupo_idGrupo` INT NOT NULL,
   `Persona_idPersona` INT NOT NULL,
   `carrera_idcarrera` INT NOT NULL,
@@ -220,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `SUSSANA`.`bajaAusentismo` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 
 CREATE USER 'susana'@'localhost' IDENTIFIED VIA mysql_native_password;
 SET PASSWORD FOR 'susana'@'localhost' = PASSWORD('patata');
