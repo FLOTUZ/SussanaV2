@@ -19,17 +19,6 @@ USE `SUSSANA` ;
 -- -----------------------------------------------------
 -- Table `SUSSANA`.`grupo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SUSSANA`.`grupo` (
-  `idGrupo` INT NOT NULL AUTO_INCREMENT,
-  `letra` VARCHAR(1) NULL,
-  PRIMARY KEY (`idGrupo`),
-  UNIQUE INDEX `idGrupo_UNIQUE` (`idGrupo` ASC) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `SUSSANA`.`persona`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SUSSANA`.`persona` (
   `idPersona` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
@@ -37,6 +26,46 @@ CREATE TABLE IF NOT EXISTS `SUSSANA`.`persona` (
   `NC` INT NULL,
   PRIMARY KEY (`idPersona`),
   UNIQUE INDEX `idPersona_UNIQUE` (`idPersona` ASC) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SUSSANA`.`tutor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SUSSANA`.`tutor` (
+  `iddocente` INT NOT NULL AUTO_INCREMENT,
+  `departamento` VARCHAR(45) NULL,
+  `puesto` VARCHAR(45) NULL,
+  `correo` VARCHAR(45) NULL,
+  `telefono` INT(20) NULL,
+  `extension` INT(4) NULL,
+  `persona_idPersona` INT NOT NULL,
+  PRIMARY KEY (`iddocente`),
+  UNIQUE INDEX `iddocente_UNIQUE` (`iddocente` ASC) ,
+  INDEX `fk_docente_persona1_idx` (`persona_idPersona` ASC) ,
+  CONSTRAINT `fk_docente_persona1`
+    FOREIGN KEY (`persona_idPersona`)
+    REFERENCES `SUSSANA`.`persona` (`idPersona`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SUSSANA`.`grupo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SUSSANA`.`grupo` (
+  `idGrupo` INT NOT NULL AUTO_INCREMENT,
+  `letra` VARCHAR(1) NULL,
+  `tutor_iddocente` INT NOT NULL,
+  PRIMARY KEY (`idGrupo`),
+  UNIQUE INDEX `idGrupo_UNIQUE` (`idGrupo` ASC) ,
+  INDEX `fk_grupo_tutor1_idx` (`tutor_iddocente` ASC) ,
+  CONSTRAINT `fk_grupo_tutor1`
+    FOREIGN KEY (`tutor_iddocente`)
+    REFERENCES `SUSSANA`.`tutor` (`iddocente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -106,52 +135,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SUSSANA`.`docente`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SUSSANA`.`docente` (
-  `iddocente` INT NOT NULL AUTO_INCREMENT,
-  `departamento` VARCHAR(45) NULL,
-  `puesto` VARCHAR(45) NULL,
-  `correo` VARCHAR(45) NULL,
-  `telefono` INT(20) NULL,
-  `extension` INT(4) NULL,
-  `persona_idPersona` INT NOT NULL,
-  PRIMARY KEY (`iddocente`),
-  UNIQUE INDEX `iddocente_UNIQUE` (`iddocente` ASC) ,
-  INDEX `fk_docente_persona1_idx` (`persona_idPersona` ASC) ,
-  CONSTRAINT `fk_docente_persona1`
-    FOREIGN KEY (`persona_idPersona`)
-    REFERENCES `SUSSANA`.`persona` (`idPersona`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `SUSSANA`.`tutor`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SUSSANA`.`tutor` (
-  `idTutor` INT NOT NULL AUTO_INCREMENT,
-  `Grupo_idGrupo` INT NOT NULL,
-  `docente_iddocente` INT NOT NULL,
-  PRIMARY KEY (`idTutor`),
-  INDEX `fk_Tutor_Grupo1_idx` (`Grupo_idGrupo` ASC) ,
-  INDEX `fk_tutor_docente1_idx` (`docente_iddocente` ASC) ,
-  UNIQUE INDEX `idTutor_UNIQUE` (`idTutor` ASC) ,
-  CONSTRAINT `fk_Tutor_Grupo1`
-    FOREIGN KEY (`Grupo_idGrupo`)
-    REFERENCES `SUSSANA`.`grupo` (`idGrupo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tutor_docente1`
-    FOREIGN KEY (`docente_iddocente`)
-    REFERENCES `SUSSANA`.`docente` (`iddocente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `SUSSANA`.`canalizacion`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SUSSANA`.`canalizacion` (
@@ -177,16 +160,10 @@ CREATE TABLE IF NOT EXISTS `SUSSANA`.`canalizacion` (
   PRIMARY KEY (`idCanalizacion`),
   UNIQUE INDEX `idCanalizacion_UNIQUE` (`idCanalizacion` ASC) ,
   INDEX `fk_Canalizacion_Alumno1_idx` (`Alumno_idAlumno` ASC) ,
-  INDEX `fk_Canalizacion_Tutor1_idx` (`Tutor_idTutor` ASC) ,
   INDEX `fk_Canalizacion_carrera1_idx` (`carrera_idcarrera` ASC) ,
   CONSTRAINT `fk_Canalizacion_Alumno1`
     FOREIGN KEY (`Alumno_idAlumno`)
     REFERENCES `SUSSANA`.`alumno` (`idAlumno`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Canalizacion_Tutor1`
-    FOREIGN KEY (`Tutor_idTutor`)
-    REFERENCES `SUSSANA`.`tutor` (`idTutor`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Canalizacion_carrera1`
