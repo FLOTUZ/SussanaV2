@@ -36,9 +36,8 @@ CREATE TABLE IF NOT EXISTS `SUSSANA`.`persona` (
   `nombre` VARCHAR(45) NULL,
   `apellidos` VARCHAR(90) NULL,
   `NC` INT NULL,
-  `Usuario_idUsuario` INT NOT NULL,
   PRIMARY KEY (`idPersona`),
-  UNIQUE INDEX `idPersona_UNIQUE` (`idPersona` ASC) )
+  UNIQUE INDEX `idPersona_UNIQUE` (`idPersona` ASC))
 ENGINE = InnoDB;
 
 
