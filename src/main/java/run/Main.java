@@ -1,5 +1,6 @@
 package run;
 
+import VO_Y_DAO.DAO.AlumnoDAO;
 import com.sussana.sussanav2.VentanaPrincipal;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -20,6 +21,10 @@ public class Main {
         if (UIManager.getLookAndFeel() instanceof MaterialLookAndFeel) {
             MaterialLookAndFeel.changeTheme(new MaterialLiteTheme());
         }
+        
+        AlumnoDAO aldao = new AlumnoDAO(new Conector.Conector().conectarMySQL());
+        
+        System.out.println(aldao.getAlumnoByNC(18120215));
         
         VentanaPrincipal v = new VentanaPrincipal();
         v.setExtendedState(JFrame.MAXIMIZED_BOTH);

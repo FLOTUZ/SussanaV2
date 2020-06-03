@@ -48,6 +48,7 @@ public class AlumnoDAO {
                 alumno.setApellidos(resultSet.getString(5) );
                 alumno.setNC(resultSet.getInt(6) );
                 alumno.setNombre(resultSet.getString(7) );
+                alumno.setCarrera(resultSet.getInt(7) );
             }
 
         } catch (SQLException ex) {
