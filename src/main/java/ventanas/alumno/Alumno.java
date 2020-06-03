@@ -5,6 +5,12 @@
  */
 package ventanas.alumno;
 
+import VO_Y_DAO.DAO.AlumnoDAO;
+import VO_Y_DAO.VO.AlumnoVO;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author ceo_flotuz
@@ -14,8 +20,11 @@ public class Alumno extends javax.swing.JPanel {
     /**
      * Creates new form AgregarAlumno
      */
-    public Alumno() {
+    private ArrayList <AlumnoVO> listaAlumnos;
+    public Alumno() throws SQLException {
         initComponents();
+        llenarBD();
+        llenarTablaAlumnos();
     }
 
     /**
@@ -90,6 +99,7 @@ public class Alumno extends javax.swing.JPanel {
 
         pn_genTabla.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alumnos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
 
+        tb_genConcenradoAlumnos.setAutoCreateRowSorter(true);
         tb_genConcenradoAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -130,6 +140,13 @@ public class Alumno extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tb_genConcenradoAlumnos.setToolTipText("Seleccione alumno");
+        tb_genConcenradoAlumnos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tb_genConcenradoAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_genConcenradoAlumnosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tb_genConcenradoAlumnos);
@@ -255,11 +272,7 @@ public class Alumno extends javax.swing.JPanel {
         jLabel7.setText("Historial");
 
         li_genHistorial.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        li_genHistorial.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        li_genHistorial.setToolTipText("Se muestran el historial de movimientos del alumno");
         jScrollPane2.setViewportView(li_genHistorial);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -281,8 +294,8 @@ public class Alumno extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pn_detallesAlumno.add(jPanel3);
@@ -489,7 +502,7 @@ public class Alumno extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -517,7 +530,7 @@ public class Alumno extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel21.setText("Numero de control");
+        jLabel21.setText("jLabel21");
 
         javax.swing.GroupLayout pn_buscarAlumnoLayout = new javax.swing.GroupLayout(pn_buscarAlumno);
         pn_buscarAlumno.setLayout(pn_buscarAlumnoLayout);
@@ -573,6 +586,28 @@ public class Alumno extends javax.swing.JPanel {
             .addComponent(tbp_pestanas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 585, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tb_genConcenradoAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_genConcenradoAlumnosMouseClicked
+        AlumnoVO a = new AlumnoVO();
+        int fila = tb_genConcenradoAlumnos.getSelectedRow();
+        
+        //Se obtienen los datos del objeto seleccionado en el arraylist
+        String nc = String.valueOf(listaAlumnos.get( fila ).getNC());
+        String nombre = String.valueOf(listaAlumnos.get( fila ).getNombre());
+        String apellidos = String.valueOf(listaAlumnos.get( fila ).getApellidos());
+        String semestre = String.valueOf(listaAlumnos.get( fila ).getSemestre());
+        String carrera = String.valueOf(listaAlumnos.get( fila ).getCarrera());
+        String grupo = String.valueOf(listaAlumnos.get( fila ).getGrupo());
+        
+        //Se pasan los datos al los text Field de la pestaña GENERAL
+        tf_genNumeroControl.setText(nc);
+        tf_genNombre.setText(nombre);
+        tf_genApellidos.setText(apellidos);
+        tf_genSemestre.setText(semestre);
+        tf_genCarrera.setText(carrera);
+        tf_genGrupo.setText(grupo);
+        
+    }//GEN-LAST:event_tb_genConcenradoAlumnosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -635,4 +670,26 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JTextField tf_genNumeroControl;
     private javax.swing.JTextField tf_genSemestre;
     // End of variables declaration//GEN-END:variables
+
+    private void llenarTablaAlumnos() {
+        int r = 0;
+        for (AlumnoVO a : listaAlumnos) {
+            tb_genConcenradoAlumnos.setValueAt(a.getNC(), r, 0);
+            tb_genConcenradoAlumnos.setValueAt(a.getNombre(), r, 1);
+            tb_genConcenradoAlumnos.setValueAt(a.getApellidos(), r, 2);
+            tb_genConcenradoAlumnos.setValueAt(a.getSemestre(), r, 3);
+            tb_genConcenradoAlumnos.setValueAt(a.getCarrera(), r, 4);
+            tb_genConcenradoAlumnos.setValueAt(a.getGrupo(), r, 5);
+            r++;
+        }
+    }
+
+    private void llenarBD() throws SQLException {
+        Connection con = new Conector.Conector().conectarMySQL();
+        AlumnoDAO alDao = new AlumnoDAO(con);
+        
+        listaAlumnos = alDao.consultaMasiva();
+        
+        con.close();
+    }
 }

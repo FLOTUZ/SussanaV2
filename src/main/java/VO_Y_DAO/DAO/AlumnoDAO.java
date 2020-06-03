@@ -119,12 +119,13 @@ public class AlumnoDAO {
                 alumno.setIdAlumno(resultSet.getInt(1));
                 alumno.setSemestre(resultSet.getInt(2));
                 alumno.setGrupo_idGrupo(resultSet.getInt(3));
-                alumno.setCarrera_idcarrera(resultSet.getInt(4));
-                alumno.setNC(resultSet.getInt(5));
-                alumno.setNombre(resultSet.getString(6));
-                alumno.setApellidos(resultSet.getString(7));
-                alumno.setNombre(resultSet.getString(8));
-                alumno.setGrupo(resultSet.getString(9));
+                alumno.setPersona_idPersona(resultSet.getInt(4));
+                alumno.setCarrera_idcarrera(resultSet.getInt(5));
+                alumno.setNC(resultSet.getInt(6));
+                alumno.setNombre(resultSet.getString(7));
+                alumno.setApellidos(resultSet.getString(8));
+                alumno.setCarrera(resultSet.getString(9));
+                alumno.setGrupo(resultSet.getString(10));
                 
 
                 lista_de_alumnos.add(alumno);
