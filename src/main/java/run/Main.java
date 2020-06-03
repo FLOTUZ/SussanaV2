@@ -22,10 +22,6 @@ public class Main {
             MaterialLookAndFeel.changeTheme(new MaterialLiteTheme());
         }
         
-        AlumnoDAO aldao = new AlumnoDAO(new Conector.Conector().conectarMySQL());
-        
-        System.out.println(aldao.getAlumnoByNC(18120215));
-        
         VentanaPrincipal v = new VentanaPrincipal();
         v.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
