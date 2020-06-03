@@ -53,17 +53,30 @@ begin
     insert into carrera (nombre) VALUES (_nombre);
 end;
 
-create procedure INSERT_alumno(_semestre int(2), _idGrupo int, _idPersona int, _idCarrera int)
+create procedure INSERT_alumno(_nombre varchar(45),
+                               _apellidos varchar(90),
+                               _NC int,
+                               _semestre int(2),
+                               _Grupo_idGrupo int,
+                               _carrera_idcarrera int)
 begin
-    insert into alumno (semestre,
-                        Grupo_idGrupo,
-                        Persona_idPersona,
-                        carrera_idcarrera)
-    VALUES (_semestre,
-            _idGrupo,
-            _idPersona,
-            _idCarrera);
+    insert into persona(nombre,
+                        apellidos,
+                        NC)
+    VALUES (_nombre,
+            _apellidos,
+            _NC);
 
+    set @idPersona = (select idPersona from persona where NC like _NC);
+
+    insert into alumno(semestre,
+                       Grupo_idGrupo,
+                       Persona_idPersona,
+                       carrera_idcarrera)
+    VALUES (_semestre,
+            _Grupo_idGrupo,
+            @idPersona,
+            _carrera_idcarrera);
 end;
 
 create procedure UPDATE_alumno(_semestre int(4),
@@ -167,10 +180,10 @@ begin
 end;
 
 create procedure INSERT_canalizacion(_fecha Date,
-                                     _idTutor int,
+                                     _tutor varchar(255),
                                      _idAlumno int,
                                      _idCarrera int,
-                                     _trizteza tinyint,
+                                     _tristeza tinyint,
                                      _angustia tinyint,
                                      _ansiedad tinyint,
                                      _desesperacion tinyint,
@@ -192,7 +205,7 @@ begin
 
     insert into canalizacion
     (fecha,
-     Tutor_idTutor,
+     tutor,
      Alumno_idAlumno,
      carrera_idcarrera,
      tristeza,
@@ -209,7 +222,24 @@ begin
      autoAgresiones,
      otro,
      Descripcion)
-    VALUES ();
+    VALUES (_fecha,
+            _tutor,
+            _idAlumno,
+            _idCarrera,
+            _tristeza,
+            _angustia,
+            _ansiedad,
+            _desesperacion,
+            _llanto,
+            _conducta,
+            _animo,
+            _exitacion,
+            _irritabilidad,
+            _drogas,
+            _aprendizaje,
+            _autoAgresiones,
+            _otro,
+            _Descripcion);
 end;
 
 create procedure SELECT_tutores()
@@ -330,16 +360,36 @@ begin
     where p.NC like _NC;
 end;
 
-create procedure UPDATE_tutor(_idTutor int ,_nombre varchar(45),
+create procedure UPDATE_tutor(_idTutor int, _nombre varchar(45),
                               _apellidos varchar(90),
                               _NC int)
--- ---------------------------------------------
+    -- ---------------------------------------------
 -- Se actualiza por id
 -- @Autor: Emmanuel Esquivel Pardo
 -- ---------------------------------------------
 begin
     UPDATE tutor t inner join persona p on t.persona_idPersona = p.idPersona
-    set p.nombre = _nombre,
+    set p.nombre    = _nombre,
         p.apellidos = _apellidos
-        where p.NC = _NC;
+    where p.NC = _NC;
+end;
+
+create function fn_insertPersona(_nombre varchar(45),
+                                 _apellidos varchar(90),
+                                 _NC int) RETURNS INT
+-- ----------
+-- Ingresa una persona y retorna su id generado
+-- ----------
+begin
+    insert into persona(nombre,
+                        apellidos,
+                        NC)
+    VALUES (_nombre,
+            _apellidos,
+            _NC);
+    set @idPersona = 0;
+    set @idPersona = (select idPersona from persona where NC like _NC);
+    set @idPersona = IFNULL(@idPersona=0);
+    select @idPersona;
+    return @idPersona;
 end;
