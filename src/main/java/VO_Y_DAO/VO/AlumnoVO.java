@@ -3,19 +3,23 @@ package VO_Y_DAO.VO;
 public class AlumnoVO {
     private int idAlumno;
     private int semestre;
-    private int Grupo_id_grupo;
-    private int Persona_idPersona;
-    private int carrera_idcarrera;
+    private String grupo;
+    private String nombre;
+    private String apellidos;
+    private int NC;
+    private int carrera;
 
     public AlumnoVO() {
     }
 
-    public AlumnoVO(int idAlumno, int semestre, int Grupo_id_grupo, int Persona_idPersona, int carrera_idcarrera) {
+    public AlumnoVO(int idAlumno, int semestre, String grupo, String nombre, String apellidos, int NC, int carrera) {
         this.idAlumno = idAlumno;
         this.semestre = semestre;
-        this.Grupo_id_grupo = Grupo_id_grupo;
-        this.Persona_idPersona = Persona_idPersona;
-        this.carrera_idcarrera = carrera_idcarrera;
+        this.grupo = grupo;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.NC = NC;
+        this.carrera = carrera;
     }
 
     public int getIdAlumno() {
@@ -34,33 +38,49 @@ public class AlumnoVO {
         this.semestre = semestre;
     }
 
-    public int getGrupo_id_grupo() {
-        return Grupo_id_grupo;
+    public String getGrupo() {
+        return grupo;
     }
 
-    public void setGrupo_id_grupo(int Grupo_id_grupo) {
-        this.Grupo_id_grupo = Grupo_id_grupo;
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
     }
 
-    public int getPersona_idPersona() {
-        return Persona_idPersona;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setPersona_idPersona(int Persona_idPersona) {
-        this.Persona_idPersona = Persona_idPersona;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public int getCarrera_idcarrera() {
-        return carrera_idcarrera;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setCarrera_idcarrera(int carrera_idcarrera) {
-        this.carrera_idcarrera = carrera_idcarrera;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public int getNC() {
+        return NC;
+    }
+
+    public void setNC(int NC) {
+        this.NC = NC;
+    }
+
+    public int getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(int carrera) {
+        this.carrera = carrera;
     }
 
     @Override
     public String toString() {
-        return "AlumnoVO{" + "idAlumno=" + idAlumno + ", semestre=" + semestre + ", Grupo_id_grupo=" + Grupo_id_grupo + ", Persona_idPersona=" + Persona_idPersona + ", carrera_idcarrera=" + carrera_idcarrera + '}';
+        return "AlumnoVO{" + "idAlumno=" + idAlumno + ", semestre=" + semestre + ", grupo=" + grupo + ", nombre=" + nombre + ", apellidos=" + apellidos + ", NC=" + NC + ", carrera=" + carrera + '}';
     }
     
 }
