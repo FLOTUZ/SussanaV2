@@ -84,14 +84,7 @@ public class Alumno extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        pn_elimnarAlumno = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel19 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         pn_general.setLayout(new java.awt.GridLayout(2, 1));
 
@@ -524,6 +517,8 @@ public class Alumno extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jLabel21.setText("Numero de control");
+
         javax.swing.GroupLayout pn_buscarAlumnoLayout = new javax.swing.GroupLayout(pn_buscarAlumno);
         pn_buscarAlumno.setLayout(pn_buscarAlumnoLayout);
         pn_buscarAlumnoLayout.setHorizontalGroup(
@@ -539,7 +534,9 @@ public class Alumno extends javax.swing.JPanel {
                         .addGap(10, 10, 10))
                     .addComponent(pn_busAcciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pn_buscarAlumnoLayout.createSequentialGroup()
-                        .addComponent(tf_buscar)
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tf_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_busBuscar)
                         .addGap(46, 46, 46))))
@@ -551,7 +548,9 @@ public class Alumno extends javax.swing.JPanel {
                 .addGroup(pn_buscarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pn_buscarAlumnoLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addComponent(tf_buscar))
+                        .addGroup(pn_buscarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tf_buscar)
+                            .addComponent(jLabel21)))
                     .addComponent(btn_busBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -562,72 +561,6 @@ public class Alumno extends javax.swing.JPanel {
         );
 
         tbp_pestanas.addTab("Buscar Alumno", pn_buscarAlumno);
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane4.setViewportView(jList1);
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel19.setText("Eliminar Alumno");
-
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 0, 0));
-        jButton5.setText("Eliminar");
-        jButton5.setEnabled(false);
-
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 204, 51));
-        jButton6.setText("Verificar");
-
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
-        jLabel20.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
-        jLabel20.setText("[ Escriba el numero de control del alumno para confirmar la eliminación ]");
-
-        javax.swing.GroupLayout pn_elimnarAlumnoLayout = new javax.swing.GroupLayout(pn_elimnarAlumno);
-        pn_elimnarAlumno.setLayout(pn_elimnarAlumnoLayout);
-        pn_elimnarAlumnoLayout.setHorizontalGroup(
-            pn_elimnarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_elimnarAlumnoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pn_elimnarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
-                    .addGroup(pn_elimnarAlumnoLayout.createSequentialGroup()
-                        .addGroup(pn_elimnarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pn_elimnarAlumnoLayout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton6))
-                            .addGroup(pn_elimnarAlumnoLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 82, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pn_elimnarAlumnoLayout.setVerticalGroup(
-            pn_elimnarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_elimnarAlumnoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addGroup(pn_elimnarAlumnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(238, Short.MAX_VALUE))
-        );
-
-        tbp_pestanas.addTab("Eliminar Alumno", pn_elimnarAlumno);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -654,8 +587,6 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -666,9 +597,8 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -676,7 +606,6 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
@@ -684,16 +613,13 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList<String> li_genHistorial;
     private javax.swing.JPanel pn_accionesBotones;
     private javax.swing.JPanel pn_anadirAlumno;
     private javax.swing.JPanel pn_busAcciones;
     private javax.swing.JPanel pn_buscarAlumno;
     private javax.swing.JPanel pn_detallesAlumno;
-    private javax.swing.JPanel pn_elimnarAlumno;
     private javax.swing.JPanel pn_genTabla;
     private javax.swing.JPanel pn_general;
     private javax.swing.JTable tb_genConcenradoAlumnos;
