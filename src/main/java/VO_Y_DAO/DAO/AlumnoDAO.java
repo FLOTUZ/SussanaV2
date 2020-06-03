@@ -1,6 +1,7 @@
 package VO_Y_DAO.DAO;
 
 import VO_Y_DAO.VO.AlumnoVO;
+import VO_Y_DAO.VO.PersonaVO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,46 +16,42 @@ public class AlumnoDAO {
         this.conector = conector;
     }
 
-    //Obtener alumno por numero de control
-    public AlumnoVO getAlumnoByNC(int idAlumno) {
+    public int altaAlumno(int id_grupo, PersonaVO persona, int carrera, AlumnoVO alumno) throws SQLException {
+        PreparedStatement objetoSQL = null;
+        ResultSet generatedKeys = null;
+        int id = 0;
 
-        AlumnoVO alumno = null;
-        //Se encapsula query
-        PreparedStatement consulta = null;
-        //Se obtiene el set de resultado
-        ResultSet resultSet = null;
-
-        //Se crea el query para ponerlo en el objeto PrepareStatement
-        String consultaSQL = "call SELECT_alumnoByNC(?)";
+        String inserta = "call INSERT_alumno(?,?,?,?,?,?)";
 
         try {
-            consulta = conector.prepareStatement(consultaSQL);
+            conector.setAutoCommit(false);
 
-            //El 1 es el indice del primer signo de interrogación
-            consulta.setInt(1, idAlumno);
+            objetoSQL = conector.prepareStatement(inserta, PreparedStatement.RETURN_GENERATED_KEYS);
 
-            resultSet = consulta.executeQuery();
+            objetoSQL.setString(1, persona.getNombre());
+            objetoSQL.setString(1, persona.getApellidos());
+            objetoSQL.setInt(1, persona.getNC());
+            objetoSQL.setInt(1, alumno.getSemestre());
+            objetoSQL.setInt(1, id_grupo);
+            objetoSQL.setInt(1, carrera);
 
-            //Mientras haya registros de la BD se ejecuta este codigo
-            while (resultSet != null && resultSet.next()) {
+            //Se ejecuta la sentencia
+            objetoSQL.executeUpdate();
 
-                //Se crea el objeto con los datos que retorna la BD
-                alumno = new AlumnoVO();
-                
-                alumno.setIdAlumno( resultSet.getInt(1) );
-                alumno.setSemestre(resultSet.getInt(2) );
-                alumno.setGrupo(resultSet.getString(3) );
-                alumno.setNombre(resultSet.getString(4) );
-                alumno.setApellidos(resultSet.getString(5) );
-                alumno.setNC(resultSet.getInt(6) );
-                alumno.setNombre(resultSet.getString(7) );
-                alumno.setCarrera(resultSet.getInt(7) );
+            //Se recogen llaves generadas
+            generatedKeys = objetoSQL.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                id = generatedKeys.getConcurrency();
             }
+            conector.commit();
 
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error desde AlumnoDAO.getAlumnoByNC");
+        } catch (SQLException ex1) {
+            conector.rollback();
+            System.out.println("Error en la transacción " + ex1.toString());
+            JOptionPane.showMessageDialog(null, "Error desde" + this.getClass().getName());
         }
-
-        return alumno;
+        return id;
     }
+
 }
