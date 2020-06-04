@@ -151,6 +151,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         archivo.setText("Archivo");
 
         mi_cerrar.setText("Cerrar");
+        mi_cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_cerrarActionPerformed(evt);
+            }
+        });
         archivo.add(mi_cerrar);
 
         jMenuBar1.add(archivo);
@@ -347,6 +352,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(vHija);
         escritorio.getDesktopManager().activateFrame(vHija);
     }//GEN-LAST:event_mi_bajaAusentismoActionPerformed
+
+    private void mi_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_cerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_mi_cerrarActionPerformed
 
     /**
      * @param args the command line arguments
