@@ -20,7 +20,7 @@ public class CanalizacionDAO {
         ResultSet generatedKeys = null;
         int id = 0;
 
-        String inserta = " INSERT_canalizacion(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String inserta = "call INSERT_canalizacion(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             conector.setAutoCommit(false);
@@ -40,11 +40,11 @@ public class CanalizacionDAO {
             objetoSQL.setBoolean(11, canalizacion.isAnimo());
             objetoSQL.setBoolean(12, canalizacion.isExitacion());
             objetoSQL.setBoolean(13, canalizacion.isIrritabilidad());
-            objetoSQL.setBoolean(15, canalizacion.isDrogas());
-            objetoSQL.setBoolean(16, canalizacion.isAprendizaje());
-            objetoSQL.setBoolean(17, canalizacion.isAutoAgresiones());
-            objetoSQL.setString(18, canalizacion.getOtro());
-            objetoSQL.setString(19, canalizacion.getDescripcion());
+            objetoSQL.setBoolean(14, canalizacion.isDrogas());
+            objetoSQL.setBoolean(15, canalizacion.isAprendizaje());
+            objetoSQL.setBoolean(16, canalizacion.isAutoAgresiones());
+            objetoSQL.setString(17, canalizacion.getOtro());
+            objetoSQL.setString(18, canalizacion.getDescripcion());
 
             //Se ejecuta la sentencia
             objetoSQL.executeUpdate();
@@ -56,7 +56,7 @@ public class CanalizacionDAO {
                 id = generatedKeys.getConcurrency();
             }
             conector.commit();
-            JOptionPane.showMessageDialog(null, "Se creó nuevo alumno con éxito");
+            JOptionPane.showMessageDialog(null, "Se creo la canalización con éxito");
         } catch (SQLException ex1) {
             conector.rollback();
             System.out.println("Error en la transacción " + ex1.toString());

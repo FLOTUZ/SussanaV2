@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" pref="831" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -54,6 +54,8 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="btn_aceptar" min="-2" pref="99" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btn_verImprimir" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btn_cancelar" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -85,7 +87,7 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel6" min="-2" pref="90" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="cbx_carrera" pref="140" max="32767" attributes="0"/>
+                                                  <Component id="cbx_carrera" pref="142" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel7" min="-2" pref="90" max="-2" attributes="0"/>
@@ -190,6 +192,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btn_aceptar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_verImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="12" max="32767" attributes="0"/>
                       </Group>
@@ -236,10 +239,13 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tf_nucaFecha">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_nucaSelecAlumno">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Seleccionar alumno.."/>
+                    <Property name="text" type="java.lang.String" value="[Seleccionar alumno]"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_nucaSelecAlumnoActionPerformed"/>
@@ -402,6 +408,11 @@
                 <Component class="javax.swing.JButton" name="btn_cancelar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btn_verImprimir">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ver e imprimir"/>
                   </Properties>
                 </Component>
               </SubComponents>

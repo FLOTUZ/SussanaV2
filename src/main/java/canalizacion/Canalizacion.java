@@ -102,6 +102,7 @@ public class Canalizacion extends javax.swing.JPanel {
         ta_nucaDescripcion = new javax.swing.JTextArea();
         btn_aceptar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
+        btn_verImprimir = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Nueva Canalización");
@@ -118,7 +119,9 @@ public class Canalizacion extends javax.swing.JPanel {
 
         jLabel7.setText("Semestre");
 
-        btn_nucaSelecAlumno.setText("Seleccionar alumno..");
+        tf_nucaFecha.setEditable(false);
+
+        btn_nucaSelecAlumno.setText("[Seleccionar alumno]");
         btn_nucaSelecAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_nucaSelecAlumnoActionPerformed(evt);
@@ -176,6 +179,8 @@ public class Canalizacion extends javax.swing.JPanel {
 
         btn_cancelar.setText("Cancelar");
 
+        btn_verImprimir.setText("Ver e imprimir");
+
         javax.swing.GroupLayout pn_nuevaCanalizacionLayout = new javax.swing.GroupLayout(pn_nuevaCanalizacion);
         pn_nuevaCanalizacion.setLayout(pn_nuevaCanalizacionLayout);
         pn_nuevaCanalizacionLayout.setHorizontalGroup(
@@ -187,6 +192,8 @@ public class Canalizacion extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_nuevaCanalizacionLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_verImprimir)
                         .addGap(18, 18, 18)
                         .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
@@ -213,7 +220,7 @@ public class Canalizacion extends javax.swing.JPanel {
                                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cbx_carrera, 0, 140, Short.MAX_VALUE))
+                                        .addComponent(cbx_carrera, 0, 142, Short.MAX_VALUE))
                                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -296,7 +303,8 @@ public class Canalizacion extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_aceptar)
-                    .addComponent(btn_cancelar))
+                    .addComponent(btn_cancelar)
+                    .addComponent(btn_verImprimir))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -308,7 +316,7 @@ public class Canalizacion extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,8 +341,7 @@ public class Canalizacion extends javax.swing.JPanel {
         try {
             //Datos alumno
             String date = tf_nucaFecha.getText();
-            int alum = Integer.valueOf(btn_nucaSelecAlumno.getText());
-            String nc = tf_nucaNC.getText();
+            int alum = Integer.valueOf(alumno.getIdAlumno());
             //Combobox
             String tutor = (String) cbx_tutor.getSelectedItem();
             int carrera = cbx_carrera.getSelectedIndex();
@@ -377,12 +384,23 @@ public class Canalizacion extends javax.swing.JPanel {
             canvo.setAutoAgresiones(agresiones);
             canvo.setOtro(otros);
             canvo.setDescripcion(descripcion);
-            
-            Connection con = new Conector.Conector().conectarMySQL();
-            CanalizacionDAO cdao = new CanalizacionDAO(con);
-            cdao.altaCanalización(canvo);
-            con.close();
-            
+
+            //Si los los campos estan en su estado por defecto...
+            if (btn_nucaSelecAlumno.getText().equalsIgnoreCase("[Seleccionar alumno]")
+                    || cbx_tutor.getSelectedIndex() == 0
+                    || cbx_carrera.getSelectedIndex() == 0
+                    || cbx_semestre.getSelectedIndex() == 0) {
+                
+                JOptionPane.showMessageDialog(this, "error: Verifique los datos ingresados");
+            } else {
+                //Se crea nueva conexión
+                Connection con = new Conector.Conector().conectarMySQL();
+                CanalizacionDAO cdao = new CanalizacionDAO(con);
+                //Se da de alta la canalización
+                cdao.altaCanalización(canvo);
+                con.close();
+            }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Algo salió mal en Canalizacion.btn_aceptarActionPerformed()\n"
                     + e.toString() + "Revise los datos ingresados");
@@ -394,6 +412,7 @@ public class Canalizacion extends javax.swing.JPanel {
     private javax.swing.JButton btn_aceptar;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_nucaSelecAlumno;
+    private javax.swing.JButton btn_verImprimir;
     private javax.swing.JComboBox<String> cbx_carrera;
     private javax.swing.JComboBox<String> cbx_semestre;
     private javax.swing.JComboBox<String> cbx_tutor;
