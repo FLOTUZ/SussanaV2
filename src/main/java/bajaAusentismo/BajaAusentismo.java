@@ -1,18 +1,34 @@
 package bajaAusentismo;
 
 import VO_Y_DAO.DAO.AlumnoDAO;
+import VO_Y_DAO.DAO.BajaAusentismoDAO;
 import VO_Y_DAO.VO.AlumnoVO;
+import VO_Y_DAO.VO.BajaAusentismoVO;
+import com.google.gson.Gson;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class BajaAusentismo extends javax.swing.JPanel {
 
     private List<AlumnoVO> listaAlumnos;
+    private String fecha;
+    private List<String> listaAusentismos;
 
     public BajaAusentismo() throws SQLException {
         initComponents();
         llenarCbx();
+
+        //Se crea fecha
+        Date date = new Date();
+        DateFormat fechaFormat = new SimpleDateFormat("yyyy-MM-dd");
+        fecha = fechaFormat.format(date);
+        listaAusentismos = new ArrayList<>();
     }
 
     @SuppressWarnings("unchecked")
@@ -208,30 +224,69 @@ public class BajaAusentismo extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // 0123 4 56 7 89
         // 2020 - 06 - 04
+        try {
+            String aaaa = tf_fechas.getText().substring(0, 4);
+            String mm = tf_fechas.getText().substring(5, 7);
+            String dd = tf_fechas.getText().substring(8, 10);
 
-        String aaaa = tf_fechas.getText().substring(0, 4);
-        String mm = tf_fechas.getText().substring(5, 7);
-        String dd = tf_fechas.getText().substring(8, 10);
+            //Si el lbl_fechas no esta vacio
+            if (!"".equals(lbl_fechas.getText())) {
+                //Se agrega a la lista de ausentismos
+                String ausentismo = aaaa + "-" + mm + "-" + dd;
+                listaAusentismos.add(ausentismo);
 
-        //Si el lbl_fechas no esta vacio
-        if (!"".equals(lbl_fechas.getText())) {
-            //concatena a nueva fecha
-            lbl_fechas.setText(
-                    lbl_fechas.getText() + ","
-                    + aaaa + "-" + mm + "-" + dd);
-        } else {
-            lbl_fechas.setText(aaaa + "-" + mm + "-" + dd);
+                //concatena a nueva fecha
+                lbl_fechas.setText(
+                        lbl_fechas.getText() + ","
+                        + aaaa + "-" + mm + "-" + dd);
+            } else {
+                //Se agrega a la lista de ausentismos
+                String ausentismo = aaaa + "-" + mm + "-" + dd;
+                listaAusentismos.add(ausentismo);
+                //se pone en el label
+                lbl_fechas.setText(aaaa + "-" + mm + "-" + dd);
+            }
+            //Se limpia el campo de texto
+            tf_fechas.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ingrese la fecha en el formato correcto");
         }
-        tf_fechas.setText("");
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         if (cbx_alumno.getSelectedIndex() == 0
                 || tf_docente.getText() == ""
-                || tf_asignatura.getText()==""
-                || tf_clave.getText() == "") {
-            
+                || tf_asignatura.getText() == ""
+                || tf_clave.getText() == ""
+                || ta_posibleCausa.getText() == "") {
+            JOptionPane.showMessageDialog(this, "Error: Verifique los campos"
+                    + "\n[alumno, docente, asignatura, clave, posible causa y "
+                    + "de haber asignado fechas de ausentismo]"
+                    + "\nSon obligatorios");
+        } else {
+            try {
+                BajaAusentismoVO bavo = new BajaAusentismoVO();
+                bavo.setAlumno_idAlumno(cbx_alumno.getSelectedIndex());
+                bavo.setFecha(fecha);
+                bavo.setDocenteReporta(tf_docente.getText());
+                bavo.setAsignatura(tf_asignatura.getText());
+                bavo.setClave(Integer.parseInt(tf_clave.getText()));
+                bavo.setPosibleCausa(ta_posibleCausa.getText());
+
+                //Se crea el JSON para ingresar un arreglo a la BD
+                Gson g = new Gson();
+                String ausent = g.toJson(listaAusentismos);
+                bavo.setFechasInasistencia(ausent);
+                
+                Connection con = new Conector.Conector().conectarMySQL();
+                BajaAusentismoDAO badao = new BajaAusentismoDAO(con);
+                badao.altaBajaAusentismo(bavo);
+                con.close();
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Verifique los campos (clave es int)");
+            }
         }
     }//GEN-LAST:event_btn_guardarActionPerformed
 

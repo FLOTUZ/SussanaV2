@@ -1,12 +1,10 @@
 package VO_Y_DAO.VO;
 
-import java.util.Date;
-import java.util.List;
 
 public class BajaAusentismoVO {
 
     private int idbajaAusentismo;
-    private Date fecha;
+    private String fecha;
     private String docenteReporta;
     private String asignatura;
     private int clave;
@@ -17,7 +15,7 @@ public class BajaAusentismoVO {
     public BajaAusentismoVO() {
     }
 
-    public BajaAusentismoVO(int idbajaAusentismo, Date fecha, String docenteReporta, String asignatura, int clave, String fechasInasistencia, String posibleCausa, int alumno_idAlumno) {
+    public BajaAusentismoVO(int idbajaAusentismo, String fecha, String docenteReporta, String asignatura, int clave, String fechasInasistencia, String posibleCausa, int alumno_idAlumno) {
         this.idbajaAusentismo = idbajaAusentismo;
         this.fecha = fecha;
         this.docenteReporta = docenteReporta;
@@ -36,11 +34,11 @@ public class BajaAusentismoVO {
         this.idbajaAusentismo = idbajaAusentismo;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
