@@ -50,7 +50,6 @@ public class Canalizacion extends javax.swing.JPanel {
 
         //Se llenan los campos
         tf_nucaFecha.setText(fecha);
-        btn_nucaSelecAlumno.setText(String.valueOf(alumno.getNC()));
         tf_nucaNC.setText(String.valueOf(alumno.getNC()));
 
         //Se llenan los combobox
@@ -72,13 +71,11 @@ public class Canalizacion extends javax.swing.JPanel {
         pn_nuevaCanalizacion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         tf_nucaFecha = new javax.swing.JTextField();
-        btn_nucaSelecAlumno = new javax.swing.JButton();
         tf_nucaNC = new javax.swing.JTextField();
         cbx_tutor = new javax.swing.JComboBox<>();
         cbx_carrera = new javax.swing.JComboBox<>();
@@ -109,9 +106,7 @@ public class Canalizacion extends javax.swing.JPanel {
 
         jLabel2.setText("Fecha");
 
-        jLabel3.setText("Alumno");
-
-        jLabel4.setText("NC");
+        jLabel4.setText("NC alumno");
 
         jLabel5.setText("Tutor");
 
@@ -120,15 +115,6 @@ public class Canalizacion extends javax.swing.JPanel {
         jLabel7.setText("Semestre");
 
         tf_nucaFecha.setEditable(false);
-
-        btn_nucaSelecAlumno.setText("[Seleccionar alumno]");
-        btn_nucaSelecAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_nucaSelecAlumnoActionPerformed(evt);
-            }
-        });
-
-        tf_nucaNC.setEditable(false);
 
         cbx_tutor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccione]" }));
 
@@ -199,33 +185,34 @@ public class Canalizacion extends javax.swing.JPanel {
                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
                         .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
-                                .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tf_nucaNC))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
-                                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
                                         .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tf_nucaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btn_nucaSelecAlumno)))
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(tf_nucaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(97, 97, 97))
                                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbx_tutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbx_carrera, 0, 142, Short.MAX_VALUE))
-                                    .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbx_semestre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(95, 95, 95)
+                                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(tf_nucaNC))
+                                            .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cbx_tutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
+                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cbx_carrera, 0, 142, Short.MAX_VALUE))
+                                            .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cbx_semestre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGap(95, 95, 95)))
                                 .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
                                         .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -263,33 +250,41 @@ public class Canalizacion extends javax.swing.JPanel {
                     .addComponent(ch_nucaTristeza)
                     .addComponent(ch_nucaEstadoAnimo))
                 .addGap(18, 18, 18)
-                .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(ch_nucaAngustia)
-                    .addComponent(ch_nucaExitación)
-                    .addComponent(btn_nucaSelecAlumno))
+                .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
+                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ch_nucaAngustia)
+                            .addComponent(ch_nucaExitación))
+                        .addGap(18, 18, 18)
+                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ch_nucaAnsiedad)
+                            .addComponent(ch_nucaIrritabilidad))
+                        .addGap(18, 18, 18)
+                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ch_nucaDesesperacion)
+                            .addComponent(ch_nucaDrogas))
+                        .addGap(18, 18, 18)
+                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ch_nucaLlanto)
+                            .addComponent(ch_nucaAprendizaje)))
+                    .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
+                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(tf_nucaNC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(cbx_tutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(cbx_carrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(cbx_semestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(tf_nucaNC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ch_nucaAnsiedad)
-                    .addComponent(ch_nucaIrritabilidad))
-                .addGap(18, 18, 18)
-                .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(ch_nucaDesesperacion)
-                    .addComponent(ch_nucaDrogas)
-                    .addComponent(cbx_tutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cbx_carrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ch_nucaLlanto)
-                    .addComponent(ch_nucaAprendizaje))
-                .addGap(18, 18, 18)
-                .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(cbx_semestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ch_nucaConducta)
                     .addComponent(ch_nucaAgresiones))
                 .addGap(18, 18, 18)
@@ -305,7 +300,7 @@ public class Canalizacion extends javax.swing.JPanel {
                     .addComponent(btn_aceptar)
                     .addComponent(btn_cancelar)
                     .addComponent(btn_verImprimir))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(pn_nuevaCanalizacion);
@@ -323,19 +318,6 @@ public class Canalizacion extends javax.swing.JPanel {
             .addComponent(jTabbedPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_nucaSelecAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nucaSelecAlumnoActionPerformed
-        //Se muestra el panel de seleccionar alumno
-        Seleccionar_alumno seleccionar = new Seleccionar_alumno();
-
-        //Se muestra un panel donde se selecciona el alumno
-        JOptionPane.showInternalMessageDialog(this, seleccionar);
-
-        //Se obtiene alumno seleccionado
-        String alumno = seleccionar.getAlumnoSeleccioando();
-        //ësto es de prueba nah más
-        btn_nucaSelecAlumno.setText(alumno.substring(2, 10));
-    }//GEN-LAST:event_btn_nucaSelecAlumnoActionPerformed
 
     private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
         try {
@@ -386,8 +368,8 @@ public class Canalizacion extends javax.swing.JPanel {
             canvo.setDescripcion(descripcion);
 
             //Si los los campos estan en su estado por defecto...
-            if (btn_nucaSelecAlumno.getText().equalsIgnoreCase("[Seleccionar alumno]")
-                    || cbx_tutor.getSelectedIndex() == 0
+            if (    tf_nucaNC.getText() == null
+                    ||cbx_tutor.getSelectedIndex() == 0
                     || cbx_carrera.getSelectedIndex() == 0
                     || cbx_semestre.getSelectedIndex() == 0) {
                 
@@ -411,7 +393,6 @@ public class Canalizacion extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_aceptar;
     private javax.swing.JButton btn_cancelar;
-    private javax.swing.JButton btn_nucaSelecAlumno;
     private javax.swing.JButton btn_verImprimir;
     private javax.swing.JComboBox<String> cbx_carrera;
     private javax.swing.JComboBox<String> cbx_semestre;
@@ -430,7 +411,6 @@ public class Canalizacion extends javax.swing.JPanel {
     private javax.swing.JCheckBox ch_nucaTristeza;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

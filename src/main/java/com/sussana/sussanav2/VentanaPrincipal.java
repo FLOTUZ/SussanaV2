@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import ventanas.grupo.Grupos;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import mantenimiento.Mantenimiento;
@@ -278,19 +279,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_tutoresActionPerformed
 
     private void mi_canalizacionPsicologicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_canalizacionPsicologicaActionPerformed
-        String titulo = "Canalización psicologica";
-        for (JInternalFrame i : escritorio.getAllFrames()) {
-            i.dispose();
+        try {
+            String titulo = "Canalización psicologica";
+            for (JInternalFrame i : escritorio.getAllFrames()) {
+                i.dispose();
+            }
+            
+            //Pero si no existe, crea una nueva ventana
+            JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
+            Canalizacion hijo = new Canalizacion();
+            vHija.add(hijo);
+            vHija.pack();
+            vHija.setVisible(true);
+            escritorio.add(vHija);
+            escritorio.getDesktopManager().activateFrame(vHija);
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al abrir panel canalizacion "+ex.toString());
         }
-
-        //Pero si no existe, crea una nueva ventana
-        JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
-        Canalizacion hijo = new Canalizacion();
-        vHija.add(hijo);
-        vHija.pack();
-        vHija.setVisible(true);
-        escritorio.add(vHija);
-        escritorio.getDesktopManager().activateFrame(vHija);
     }//GEN-LAST:event_mi_canalizacionPsicologicaActionPerformed
 
     private void mi_solicitudCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_solicitudCreditosActionPerformed

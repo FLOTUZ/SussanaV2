@@ -10,10 +10,8 @@ package canalizacion;
  * @author Emmanuel
  */
 public class Seleccionar_alumno extends javax.swing.JPanel {
-
-    /**
-     * Creates new form Seleccionar_alumno
-     */
+    
+    private int nc;
     public Seleccionar_alumno() {
         initComponents();
         
@@ -100,7 +98,7 @@ public class Seleccionar_alumno extends javax.swing.JPanel {
     private String alumno;
     private void btn_seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_seleccionarActionPerformed
         alumno = li_alumnos.getSelectedValue();
-        System.out.println("Mensaje desde clase seleccionar alumno.dameAlumno()");
+        System.out.println("Mensaje desde clase Seleccionar_alumno.dameAlumno()");
         System.out.println("Se ha seleccionado alumno numero: " + alumno);
     }//GEN-LAST:event_btn_seleccionarActionPerformed
 
