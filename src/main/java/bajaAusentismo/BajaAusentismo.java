@@ -50,7 +50,6 @@ public class BajaAusentismo extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         ta_ResultadoInvestigación = new javax.swing.JTextArea();
         btn_guardar = new javax.swing.JButton();
-        btn_actualizar = new javax.swing.JButton();
         btn_imprimir = new javax.swing.JButton();
         cbx_alumno = new javax.swing.JComboBox<>();
         tf_docente = new javax.swing.JTextField();
@@ -94,8 +93,6 @@ public class BajaAusentismo extends javax.swing.JPanel {
                 btn_guardarActionPerformed(evt);
             }
         });
-
-        btn_actualizar.setText("Actualizar");
 
         btn_imprimir.setText("Imprimir");
 
@@ -156,8 +153,6 @@ public class BajaAusentismo extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btn_actualizar)
-                                .addGap(18, 18, 18)
                                 .addComponent(btn_imprimir)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -202,7 +197,6 @@ public class BajaAusentismo extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_guardar)
-                    .addComponent(btn_actualizar)
                     .addComponent(btn_imprimir))
                 .addContainerGap())
         );
@@ -279,6 +273,7 @@ public class BajaAusentismo extends javax.swing.JPanel {
                 String ausent = g.toJson(listaAusentismos);
                 bavo.setFechasInasistencia(ausent);
                 
+                //Se fa de alta en la BD
                 Connection con = new Conector.Conector().conectarMySQL();
                 BajaAusentismoDAO badao = new BajaAusentismoDAO(con);
                 badao.altaBajaAusentismo(bavo);
@@ -292,7 +287,6 @@ public class BajaAusentismo extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_imprimir;
     private javax.swing.JComboBox<String> cbx_alumno;

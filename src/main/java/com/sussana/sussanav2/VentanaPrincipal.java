@@ -338,19 +338,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_mantActionPerformed
 
     private void mi_bajaAusentismoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_bajaAusentismoActionPerformed
-        String titulo = "Baja Ausentismo";
-        for (JInternalFrame i : escritorio.getAllFrames()) {
-            i.dispose();
+        try {
+            String titulo = "Baja Ausentismo";
+            for (JInternalFrame i : escritorio.getAllFrames()) {
+                i.dispose();
+            }
+            
+            //Pero si no existe, crea una nueva ventana
+            JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
+            BajaAusentismo hijo = new BajaAusentismo();
+            vHija.add(hijo);
+            vHija.pack();
+            vHija.setVisible(true);
+            escritorio.add(vHija);
+            escritorio.getDesktopManager().activateFrame(vHija);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al crear ventana baja por ausentismo" + ex);
         }
-
-        //Pero si no existe, crea una nueva ventana
-        JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
-        BajaAusentismo hijo = new BajaAusentismo();
-        vHija.add(hijo);
-        vHija.pack();
-        vHija.setVisible(true);
-        escritorio.add(vHija);
-        escritorio.getDesktopManager().activateFrame(vHija);
     }//GEN-LAST:event_mi_bajaAusentismoActionPerformed
 
     private void mi_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_cerrarActionPerformed
