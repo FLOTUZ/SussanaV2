@@ -32,6 +32,7 @@ public class Canalizacion extends javax.swing.JPanel {
     public Canalizacion() throws SQLException {
         initComponents();
         llenarCombobox();
+        tf_nucaFecha.setText(fecha);
     }
 
     public Canalizacion(int matricula) throws SQLException {
