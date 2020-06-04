@@ -32,6 +32,11 @@ public class Canalizacion extends javax.swing.JPanel {
     public Canalizacion() throws SQLException {
         initComponents();
         llenarCombobox();
+        //Obtener la fecha y formatearlo:
+        Date date = new Date();
+        DateFormat fechaFormat = new SimpleDateFormat("yyyy-MM-dd");
+        fecha = fechaFormat.format(date);
+        //Se setea en el field fecha
         tf_nucaFecha.setText(fecha);
     }
 
@@ -52,7 +57,7 @@ public class Canalizacion extends javax.swing.JPanel {
         //Se llenan los campos
         tf_nucaFecha.setText(fecha);
         tf_nucaNC.setText(String.valueOf(alumno.getNC()));
-
+        tf_nucaNC.setEditable(false);
         //Se llenan los combobox
         llenarCombobox();
         con.close();
@@ -369,11 +374,11 @@ public class Canalizacion extends javax.swing.JPanel {
             canvo.setDescripcion(descripcion);
 
             //Si los los campos estan en su estado por defecto...
-            if (    tf_nucaNC.getText() == null
-                    ||cbx_tutor.getSelectedIndex() == 0
+            if (tf_nucaNC.getText() == null
+                    || cbx_tutor.getSelectedIndex() == 0
                     || cbx_carrera.getSelectedIndex() == 0
                     || cbx_semestre.getSelectedIndex() == 0) {
-                
+
                 JOptionPane.showMessageDialog(this, "error: Verifique los datos ingresados");
             } else {
                 //Se crea nueva conexión
