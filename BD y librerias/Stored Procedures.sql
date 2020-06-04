@@ -424,3 +424,37 @@ begin
              inner join carrera c on a.carrera_idcarrera = c.idcarrera
     order by NC ASC;
 end;
+
+create procedure SELECT_tutorByNCAlumno(_ncAlumno int)
+-- ---------------------------------------
+-- Se consulta tutor por el numero de control de un alumno
+-- ---------------------------------------
+
+begin
+    select p.nombre
+    from tutor t
+             inner join persona p on t.persona_idPersona = p.idPersona
+             inner join grupo g on t.iddocente = g.tutor_iddocente
+             inner join alumno a on g.idGrupo = a.Grupo_idGrupo
+    where a.idAlumno like _ncAlumno;
+end;
+
+create procedure SELECT_tutor()
+-- ------------------
+-- Se obtienen los datos de un tutor
+-- ---------------------
+
+begin
+    select p.idPersona,
+           p.nombre,
+           p.apellidos,
+           p.NC,
+           t.iddocente as idTutor,
+           t.departamento,
+           t.puesto,
+           t.correo,
+           t.telefono,
+           t.extension
+    from tutor t
+             inner join persona p on t.persona_idPersona = p.idPersona;
+end;

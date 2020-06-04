@@ -5,9 +5,10 @@ import java.util.Date;
 
 public class CanalizacionVO {
     private int idCanalizacion;
-    private Date fecha;
+    private String fecha;
     private String tutor;
     private int Alumno_idAlumno;
+    private int semstre;
     private int carrera_idCarrera;
     private boolean trizteza;
     private boolean angustia;
@@ -27,11 +28,12 @@ public class CanalizacionVO {
     public CanalizacionVO() {
     }
 
-    public CanalizacionVO(int idCanalizacion, Date fecha, String tutor, int Alumno_idAlumno, int carrera_idCarrera, boolean trizteza, boolean angustia, boolean ansiedad, boolean desesperacion, boolean llanto, boolean conduta, boolean animo, boolean exitacion, boolean irritabilidad, boolean drogas, boolean aprendizaje, boolean autoAgresiones, String otro, String descripcion) {
+    public CanalizacionVO(int idCanalizacion, String fecha, String tutor, int Alumno_idAlumno, int semstre, int carrera_idCarrera, boolean trizteza, boolean angustia, boolean ansiedad, boolean desesperacion, boolean llanto, boolean conduta, boolean animo, boolean exitacion, boolean irritabilidad, boolean drogas, boolean aprendizaje, boolean autoAgresiones, String otro, String descripcion) {
         this.idCanalizacion = idCanalizacion;
         this.fecha = fecha;
         this.tutor = tutor;
         this.Alumno_idAlumno = Alumno_idAlumno;
+        this.semstre = semstre;
         this.carrera_idCarrera = carrera_idCarrera;
         this.trizteza = trizteza;
         this.angustia = angustia;
@@ -49,6 +51,8 @@ public class CanalizacionVO {
         this.descripcion = descripcion;
     }
 
+    
+
     public int getIdCanalizacion() {
         return idCanalizacion;
     }
@@ -57,11 +61,11 @@ public class CanalizacionVO {
         this.idCanalizacion = idCanalizacion;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -201,9 +205,16 @@ public class CanalizacionVO {
         this.descripcion = descripcion;
     }
 
+    public int getSemstre() {
+        return semstre;
+    }
+
+    public void setSemstre(int semstre) {
+        this.semstre = semstre;
+    }
+
     @Override
     public String toString() {
-        return "CanalizacionVO{" + "idCanalizacion=" + idCanalizacion + ", fecha=" + fecha + ", tutor=" + tutor + ", Alumno_idAlumno=" + Alumno_idAlumno + ", carrera_idCarrera=" + carrera_idCarrera + ", trizteza=" + trizteza + ", angustia=" + angustia + ", ansiedad=" + ansiedad + ", desesperacion=" + desesperacion + ", llanto=" + llanto + ", conduta=" + conduta + ", animo=" + animo + ", exitacion=" + exitacion + ", irritabilidad=" + irritabilidad + ", drogas=" + drogas + ", aprendizaje=" + aprendizaje + ", autoAgresiones=" + autoAgresiones + ", otro=" + otro + ", descripcion=" + descripcion + '}';
-    }
-    
+        return "CanalizacionVO{" + "idCanalizacion=" + idCanalizacion + ", fecha=" + fecha + ", tutor=" + tutor + ", Alumno_idAlumno=" + Alumno_idAlumno + ", semstre=" + semstre + ", carrera_idCarrera=" + carrera_idCarrera + ", trizteza=" + trizteza + ", angustia=" + angustia + ", ansiedad=" + ansiedad + ", desesperacion=" + desesperacion + ", llanto=" + llanto + ", conduta=" + conduta + ", animo=" + animo + ", exitacion=" + exitacion + ", irritabilidad=" + irritabilidad + ", drogas=" + drogas + ", aprendizaje=" + aprendizaje + ", autoAgresiones=" + autoAgresiones + ", otro=" + otro + ", descripcion=" + descripcion + '}';
+    }   
 }

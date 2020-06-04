@@ -6,11 +6,19 @@
 package canalizacion;
 
 import VO_Y_DAO.DAO.AlumnoDAO;
+import VO_Y_DAO.DAO.CanalizacionDAO;
+import VO_Y_DAO.DAO.CarreraDAO;
+import VO_Y_DAO.DAO.TutorDAO;
 import VO_Y_DAO.VO.AlumnoVO;
+import VO_Y_DAO.VO.CanalizacionVO;
+import VO_Y_DAO.VO.CarreraVO;
+import VO_Y_DAO.VO.TutorVO;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Canalizacion extends javax.swing.JPanel {
@@ -18,27 +26,36 @@ public class Canalizacion extends javax.swing.JPanel {
     private int matricula;
     private String fecha;
     private AlumnoVO alumno;
-    
-    
-    public Canalizacion() {
+    private List<TutorVO> listaTutores;
+    private List<CarreraVO> listaCarreras;
+
+    public Canalizacion() throws SQLException {
         initComponents();
+        llenarCombobox();
     }
 
-    public Canalizacion(int matricula) {
+    public Canalizacion(int matricula) throws SQLException {
         initComponents();
         this.matricula = matricula;
-        
+
         //Obtener la fecha y formatearlo:
         Date date = new Date();
         DateFormat fechaFormat = new SimpleDateFormat("yyyy-MM-dd");
         fecha = fechaFormat.format(date);
-        
+
         //Se forma el alumno para la canalización
         Connection con = new Conector.Conector().conectarMySQL();
         AlumnoDAO aldao = new AlumnoDAO(con);
         alumno = aldao.getAlumnoByNC(matricula);
-        
-        btn_nucaSelecAlumno.setText(alumno.getNombre());
+
+        //Se llenan los campos
+        tf_nucaFecha.setText(fecha);
+        btn_nucaSelecAlumno.setText(String.valueOf(alumno.getNC()));
+        tf_nucaNC.setText(String.valueOf(alumno.getNC()));
+
+        //Se llenan los combobox
+        llenarCombobox();
+        con.close();
     }
 
     /**
@@ -63,13 +80,13 @@ public class Canalizacion extends javax.swing.JPanel {
         tf_nucaFecha = new javax.swing.JTextField();
         btn_nucaSelecAlumno = new javax.swing.JButton();
         tf_nucaNC = new javax.swing.JTextField();
-        btn_nucaSelecTutor = new javax.swing.JButton();
+        cbx_tutor = new javax.swing.JComboBox<>();
         cbx_carrera = new javax.swing.JComboBox<>();
         cbx_semestre = new javax.swing.JComboBox<>();
         ch_nucaTristeza = new javax.swing.JCheckBox();
         ch_nucaAngustia = new javax.swing.JCheckBox();
         ch_nucaAnsiedad = new javax.swing.JCheckBox();
-        ch_nucaDepresion = new javax.swing.JCheckBox();
+        ch_nucaDesesperacion = new javax.swing.JCheckBox();
         ch_nucaLlanto = new javax.swing.JCheckBox();
         ch_nucaConducta = new javax.swing.JCheckBox();
         ch_nucaEstadoAnimo = new javax.swing.JCheckBox();
@@ -108,9 +125,11 @@ public class Canalizacion extends javax.swing.JPanel {
             }
         });
 
-        btn_nucaSelecTutor.setText("Seleccionar tutor..");
+        tf_nucaNC.setEditable(false);
 
-        cbx_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "Itics", "Sistemas", "Informatica" }));
+        cbx_tutor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccione]" }));
+
+        cbx_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]" }));
 
         cbx_semestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccionar]", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
@@ -120,7 +139,7 @@ public class Canalizacion extends javax.swing.JPanel {
 
         ch_nucaAnsiedad.setText("Ansiedad");
 
-        ch_nucaDepresion.setText("Desesperación constante");
+        ch_nucaDesesperacion.setText("Desesperación constante");
 
         ch_nucaLlanto.setText("Llanto súbito continuo");
 
@@ -149,6 +168,11 @@ public class Canalizacion extends javax.swing.JPanel {
         jScrollPane1.setViewportView(ta_nucaDescripcion);
 
         btn_aceptar.setText("Aceptar");
+        btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_aceptarActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setText("Cancelar");
 
@@ -160,6 +184,11 @@ public class Canalizacion extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_nuevaCanalizacionLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
                         .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
@@ -180,11 +209,11 @@ public class Canalizacion extends javax.swing.JPanel {
                                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btn_nucaSelecTutor, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                                        .addComponent(cbx_tutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cbx_carrera, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(cbx_carrera, 0, 140, Short.MAX_VALUE))
                                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -196,7 +225,7 @@ public class Canalizacion extends javax.swing.JPanel {
                                             .addComponent(ch_nucaTristeza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(ch_nucaAngustia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(ch_nucaAnsiedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(ch_nucaDepresion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(ch_nucaDesesperacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(ch_nucaLlanto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(ch_nucaConducta, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,13 +240,8 @@ public class Canalizacion extends javax.swing.JPanel {
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(tf_nucaOtros))))
-                            .addComponent(jLabel9))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_nuevaCanalizacionLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pn_nuevaCanalizacionLayout.setVerticalGroup(
@@ -246,9 +270,9 @@ public class Canalizacion extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(ch_nucaDepresion)
+                    .addComponent(ch_nucaDesesperacion)
                     .addComponent(ch_nucaDrogas)
-                    .addComponent(btn_nucaSelecTutor))
+                    .addComponent(cbx_tutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -284,11 +308,11 @@ public class Canalizacion extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -305,20 +329,80 @@ public class Canalizacion extends javax.swing.JPanel {
         btn_nucaSelecAlumno.setText(alumno.substring(2, 10));
     }//GEN-LAST:event_btn_nucaSelecAlumnoActionPerformed
 
+    private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
+        try {
+            //Datos alumno
+            String date = tf_nucaFecha.getText();
+            int alum = Integer.valueOf(btn_nucaSelecAlumno.getText());
+            String nc = tf_nucaNC.getText();
+            //Combobox
+            String tutor = (String) cbx_tutor.getSelectedItem();
+            int carrera = cbx_carrera.getSelectedIndex();
+            int semestre = cbx_semestre.getSelectedIndex();
+            //checkboxe's
+            boolean tristeza = ch_nucaTristeza.isSelected();
+            boolean angustia = ch_nucaAngustia.isSelected();
+            boolean ansiedad = ch_nucaAnsiedad.isSelected();
+            boolean desesperacion = ch_nucaDesesperacion.isSelected();
+            boolean llanto = ch_nucaLlanto.isSelected();
+            boolean conducta = ch_nucaConducta.isSelected();
+            boolean animo = ch_nucaEstadoAnimo.isSelected();
+            boolean exitacion = ch_nucaExitación.isSelected();
+            boolean irritabilidad = ch_nucaIrritabilidad.isSelected();
+            boolean drogas = ch_nucaDrogas.isSelected();
+            boolean aprendizaje = ch_nucaAprendizaje.isSelected();
+            boolean agresiones = ch_nucaAgresiones.isSelected();
+            //Detalles y especificacion
+            String otros = tf_nucaOtros.getText();
+            String descripcion = ta_nucaDescripcion.getText();
+
+            //Se enpaqueta
+            CanalizacionVO canvo = new CanalizacionVO();
+            canvo.setFecha(date);
+            canvo.setAlumno_idAlumno(alum);
+            canvo.setTutor(tutor);
+            canvo.setCarrera_idCarrera(carrera);
+            canvo.setSemstre(semestre);
+            canvo.setTrizteza(tristeza);
+            canvo.setAnimo(angustia);
+            canvo.setAnsiedad(ansiedad);
+            canvo.setDesesperacion(desesperacion);
+            canvo.setLlanto(llanto);
+            canvo.setConduta(conducta);
+            canvo.setAnimo(animo);
+            canvo.setExitacion(exitacion);
+            canvo.setIrritabilidad(irritabilidad);
+            canvo.setDrogas(drogas);
+            canvo.setAprendizaje(aprendizaje);
+            canvo.setAutoAgresiones(agresiones);
+            canvo.setOtro(otros);
+            canvo.setDescripcion(descripcion);
+            
+            Connection con = new Conector.Conector().conectarMySQL();
+            CanalizacionDAO cdao = new CanalizacionDAO(con);
+            cdao.altaCanalización(canvo);
+            con.close();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Algo salió mal en Canalizacion.btn_aceptarActionPerformed()\n"
+                    + e.toString() + "Revise los datos ingresados");
+        }
+    }//GEN-LAST:event_btn_aceptarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_aceptar;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_nucaSelecAlumno;
-    private javax.swing.JButton btn_nucaSelecTutor;
     private javax.swing.JComboBox<String> cbx_carrera;
     private javax.swing.JComboBox<String> cbx_semestre;
+    private javax.swing.JComboBox<String> cbx_tutor;
     private javax.swing.JCheckBox ch_nucaAgresiones;
     private javax.swing.JCheckBox ch_nucaAngustia;
     private javax.swing.JCheckBox ch_nucaAnsiedad;
     private javax.swing.JCheckBox ch_nucaAprendizaje;
     private javax.swing.JCheckBox ch_nucaConducta;
-    private javax.swing.JCheckBox ch_nucaDepresion;
+    private javax.swing.JCheckBox ch_nucaDesesperacion;
     private javax.swing.JCheckBox ch_nucaDrogas;
     private javax.swing.JCheckBox ch_nucaEstadoAnimo;
     private javax.swing.JCheckBox ch_nucaExitación;
@@ -343,4 +427,27 @@ public class Canalizacion extends javax.swing.JPanel {
     private javax.swing.JTextField tf_nucaNC;
     private javax.swing.JTextField tf_nucaOtros;
     // End of variables declaration//GEN-END:variables
+
+    private void llenarCombobox() throws SQLException {
+        Connection cone = new Conector.Conector().conectarMySQL();
+        TutorDAO tdao = new TutorDAO(cone);
+
+        //Se consultan los tutores y se guardan en una lista
+        listaTutores = tdao.consultaMasiva();
+
+        //Se recorre la lista
+        for (TutorVO i : listaTutores) {
+            cbx_tutor.addItem(i.getNombre() + i.getApellidos());
+        }
+
+        CarreraDAO cdao = new CarreraDAO(cone);
+        //Se consultan las carreras y se guardan en una lista
+        listaCarreras = cdao.consultaMasiva();
+
+        for (CarreraVO i : listaCarreras) {
+            cbx_carrera.addItem(i.getNombre());
+        }
+
+        cone.close();
+    }
 }

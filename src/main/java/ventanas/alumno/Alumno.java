@@ -13,6 +13,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -735,25 +737,29 @@ public class Alumno extends javax.swing.JPanel {
         //Se cierran los internalframes del JDesktopPane si se confirma
         if (opcion == 0) {
 
-            //Se obtiene la fila seleccionada en la tabla
-            int fila = tb_busResultado.getSelectedRow();
-
-            //Se obtiene el numero de control de la fila seleccionada
-            int matricula = (Integer) tb_busResultado.getValueAt(fila, 1);
-
-            //Pero si no existe, crea una nueva ventana
-            JInternalFrame vHija = new JInternalFrame("Canalización psicologica", true, true, true, false);
-            Canalizacion hijo = new Canalizacion(matricula);
-            vHija.add(hijo);
-            vHija.pack();
-            vHija.setVisible(true);
-            for (JInternalFrame i : escritorio.getAllFrames()) {
-                i.setVisible(false);
-                i.dispose();
+            try {
+                //Se obtiene la fila seleccionada en la tabla
+                int fila = tb_busResultado.getSelectedRow();
+                
+                //Se obtiene el numero de control de la fila seleccionada
+                int matricula = (Integer) tb_busResultado.getValueAt(fila, 1);
+                
+                //Pero si no existe, crea una nueva ventana
+                JInternalFrame vHija = new JInternalFrame("Canalización psicologica", true, true, true, false);
+                Canalizacion hijo = new Canalizacion(matricula);
+                vHija.add(hijo);
+                vHija.pack();
+                vHija.setVisible(true);
+                for (JInternalFrame i : escritorio.getAllFrames()) {
+                    i.setVisible(false);
+                    i.dispose();
+                }
+                
+                escritorio.add(vHija);
+                escritorio.getDesktopManager().activateFrame(vHija);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error en Alumno.btn_busCanalizacionActionPerformed()\n" + ex.toString());
             }
-            
-            escritorio.add(vHija);
-            escritorio.getDesktopManager().activateFrame(vHija);
         }
 
         //Si se genera un error de null pointer es por que mandé una variable a panel Canalizacion
