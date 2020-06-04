@@ -3,6 +3,9 @@ package com.sussana.sussanav2;
 import bajaAusentismo.BajaAusentismo;
 import canalizacion.Canalizacion;
 import credito.Credito;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ventanas.grupo.Grupos;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -238,20 +241,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_gruposActionPerformed
 
     private void btn_alumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alumnosActionPerformed
-        //Si hay una ventana de tipo grupos, entonces no crea una nueva
-        String titulo = "Alumnos";
-        for (JInternalFrame i : escritorio.getAllFrames()) {
-            i.dispose();
+        try {
+            //Si hay una ventana de tipo grupos, entonces no crea una nueva
+            String titulo = "Alumnos";
+            for (JInternalFrame i : escritorio.getAllFrames()) {
+                i.dispose();
+            }
+            
+            //Pero si no existe, crea una nueva ventana
+            JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
+            Alumno hijo = new Alumno(escritorio);
+            vHija.add(hijo);
+            vHija.pack();
+            vHija.setVisible(true);
+            escritorio.add(vHija);
+            escritorio.getDesktopManager().activateFrame(vHija);
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //Pero si no existe, crea una nueva ventana
-        JInternalFrame vHija = new JInternalFrame(titulo, true, true, true, false);
-        Alumno hijo = new Alumno();
-        vHija.add(hijo);
-        vHija.pack();
-        vHija.setVisible(true);
-        escritorio.add(vHija);
-        escritorio.getDesktopManager().activateFrame(vHija);
     }//GEN-LAST:event_btn_alumnosActionPerformed
 
     private void btn_tutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tutoresActionPerformed

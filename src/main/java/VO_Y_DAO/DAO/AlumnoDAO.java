@@ -30,11 +30,11 @@ public class AlumnoDAO {
             objetoSQL = conector.prepareStatement(inserta, PreparedStatement.RETURN_GENERATED_KEYS);
 
             objetoSQL.setString(1, persona.getNombre());
-            objetoSQL.setString(1, persona.getApellidos());
-            objetoSQL.setInt(1, persona.getNC());
-            objetoSQL.setInt(1, alumno.getSemestre());
-            objetoSQL.setInt(1, id_grupo);
-            objetoSQL.setInt(1, carrera);
+            objetoSQL.setString(2, persona.getApellidos());
+            objetoSQL.setInt(3, persona.getNC());
+            objetoSQL.setInt(4, alumno.getSemestre());
+            objetoSQL.setInt(5, id_grupo);
+            objetoSQL.setInt(6, carrera);
 
             //Se ejecuta la sentencia
             objetoSQL.executeUpdate();
@@ -46,7 +46,7 @@ public class AlumnoDAO {
                 id = generatedKeys.getConcurrency();
             }
             conector.commit();
-
+            JOptionPane.showMessageDialog(null, "Se creó nuevo alumno con éxito");
         } catch (SQLException ex1) {
             conector.rollback();
             System.out.println("Error en la transacción " + ex1.toString());
@@ -90,7 +90,7 @@ public class AlumnoDAO {
             }
         } catch (SQLException ex) {
         System.out.println("Error en la transacción " + ex.toString());
-        JOptionPane.showMessageDialog(null, "Error desde clienteDAO.getProductoBySKU()");
+        JOptionPane.showMessageDialog(null, "Error desde AlumnoDAO.getAlumnoByNC()");
     }
         return alumno;
     }

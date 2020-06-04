@@ -5,20 +5,40 @@
  */
 package canalizacion;
 
+import VO_Y_DAO.DAO.AlumnoDAO;
+import VO_Y_DAO.VO.AlumnoVO;
+import java.sql.Connection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-/**
- *
- * @author Emmanuel
- */
 public class Canalizacion extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Canalizacion
-     */
+    private int matricula;
+    private String fecha;
+    private AlumnoVO alumno;
+    
+    
     public Canalizacion() {
         initComponents();
+    }
+
+    public Canalizacion(int matricula) {
+        initComponents();
+        this.matricula = matricula;
+        
+        //Obtener la fecha y formatearlo:
+        Date date = new Date();
+        DateFormat fechaFormat = new SimpleDateFormat("yyyy-MM-dd");
+        fecha = fechaFormat.format(date);
+        
+        //Se forma el alumno para la canalización
+        Connection con = new Conector.Conector().conectarMySQL();
+        AlumnoDAO aldao = new AlumnoDAO(con);
+        alumno = aldao.getAlumnoByNC(matricula);
+        
+        btn_nucaSelecAlumno.setText(alumno.getNombre());
     }
 
     /**
@@ -154,9 +174,9 @@ public class Canalizacion extends javax.swing.JPanel {
                                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
-                                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(tf_nucaFecha)
-                                            .addComponent(btn_nucaSelecAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tf_nucaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btn_nucaSelecAlumno)))
                                     .addGroup(pn_nuevaCanalizacionLayout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -214,9 +234,9 @@ public class Canalizacion extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(btn_nucaSelecAlumno)
                     .addComponent(ch_nucaAngustia)
-                    .addComponent(ch_nucaExitación))
+                    .addComponent(ch_nucaExitación)
+                    .addComponent(btn_nucaSelecAlumno))
                 .addGap(18, 18, 18)
                 .addGroup(pn_nuevaCanalizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -275,11 +295,10 @@ public class Canalizacion extends javax.swing.JPanel {
     private void btn_nucaSelecAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nucaSelecAlumnoActionPerformed
         //Se muestra el panel de seleccionar alumno
         Seleccionar_alumno seleccionar = new Seleccionar_alumno();
-        
-        
+
         //Se muestra un panel donde se selecciona el alumno
-        JOptionPane.showInternalMessageDialog(this,seleccionar);
-        
+        JOptionPane.showInternalMessageDialog(this, seleccionar);
+
         //Se obtiene alumno seleccionado
         String alumno = seleccionar.getAlumnoSeleccioando();
         //ësto es de prueba nah más

@@ -1,25 +1,25 @@
 package VO_Y_DAO.VO;
 
 public class GrupoVO {
-    private int idFrupo;
+    private int idGrupo;
     private String letra;
     private int tutor_iddocente;
 
     public GrupoVO() {
     }
 
-    public GrupoVO(int idFrupo, String letra, int tutor_iddocente) {
-        this.idFrupo = idFrupo;
+    public GrupoVO(int idGrupo, String letra, int tutor_iddocente) {
+        this.idGrupo = idGrupo;
         this.letra = letra;
         this.tutor_iddocente = tutor_iddocente;
     }
 
-    public int getIdFrupo() {
-        return idFrupo;
+    public int getIdGrupo() {
+        return idGrupo;
     }
 
-    public void setIdFrupo(int idFrupo) {
-        this.idFrupo = idFrupo;
+    public void setIdGrupo(int idGrupo) {
+        this.idGrupo = idGrupo;
     }
 
     public String getLetra() {
@@ -40,7 +40,7 @@ public class GrupoVO {
 
     @Override
     public String toString() {
-        return "GrupoVO{" + "idFrupo=" + idFrupo + ", letra=" + letra + ", tutor_iddocente=" + tutor_iddocente + '}';
+        return "GrupoVO{" + "idGrupo=" + idGrupo + ", letra=" + letra + ", tutor_iddocente=" + tutor_iddocente + '}';
     }
     
 }

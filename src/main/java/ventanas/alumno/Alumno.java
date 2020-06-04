@@ -1,30 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas.alumno;
 
 import VO_Y_DAO.DAO.AlumnoDAO;
+import VO_Y_DAO.DAO.CarreraDAO;
+import VO_Y_DAO.DAO.GrupoDAO;
 import VO_Y_DAO.VO.AlumnoVO;
+import VO_Y_DAO.VO.CarreraVO;
+import VO_Y_DAO.VO.GrupoVO;
+import VO_Y_DAO.VO.PersonaVO;
+import canalizacion.Canalizacion;
+import credito.Credito;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author ceo_flotuz
- */
 public class Alumno extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AgregarAlumno
-     */
-    private ArrayList <AlumnoVO> listaAlumnos;
-    public Alumno() throws SQLException {
+    private ArrayList<AlumnoVO> listaAlumnos;
+    private List<GrupoVO> listaGrupos;
+    private List<CarreraVO> listaCarreras;
+    private JDesktopPane escritorio;
+
+    public Alumno(JDesktopPane escritorio) throws SQLException {
         initComponents();
         llenarBD();
         llenarTablaAlumnos();
+
+        //Llenar ls combobox de la pestaña añadir alumno
+        llenarAnadirAlumno();
+
+        this.escritorio = escritorio;
     }
 
     /**
@@ -81,15 +89,15 @@ public class Alumno extends javax.swing.JPanel {
         tf_buscar = new javax.swing.JTextField();
         btn_busBuscar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_busResultado = new javax.swing.JTable();
         pn_busAcciones = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         pn_accionesBotones = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_busCanalizacion = new javax.swing.JButton();
+        btn_busCredito = new javax.swing.JButton();
+        btn_busVerSolicitud = new javax.swing.JButton();
+        btn_busVerCredito = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -311,8 +319,18 @@ public class Alumno extends javax.swing.JPanel {
         jLabel10.setText("Nombre");
 
         btn_anaAceptar.setText("Aceptar");
+        btn_anaAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_anaAceptarActionPerformed(evt);
+            }
+        });
 
         btn_anaLimpiar.setText("Limpiar");
+        btn_anaLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_anaLimpiarActionPerformed(evt);
+            }
+        });
 
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel18.setText("Apellidos");
@@ -329,11 +347,11 @@ public class Alumno extends javax.swing.JPanel {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setText("NC");
 
-        cbx_anaSemestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_anaSemestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccione]", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
-        cbx_anaCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_anaCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccione]" }));
 
-        cbx_anaGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_anaGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccione]" }));
 
         javax.swing.GroupLayout pn_anadirAlumnoLayout = new javax.swing.GroupLayout(pn_anadirAlumno);
         pn_anadirAlumno.setLayout(pn_anadirAlumnoLayout);
@@ -423,8 +441,13 @@ public class Alumno extends javax.swing.JPanel {
         jLabel8.setText("Resultado de busqueda");
 
         btn_busBuscar.setText("Buscar");
+        btn_busBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_busBuscarActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_busResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -449,7 +472,7 @@ public class Alumno extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(tb_busResultado);
 
         pn_busAcciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
@@ -462,17 +485,27 @@ public class Alumno extends javax.swing.JPanel {
 
         jPanel6.setLayout(new java.awt.GridLayout(0, 1));
 
-        jButton2.setText("Solicitud de canalización");
-        jPanel6.add(jButton2);
+        btn_busCanalizacion.setText("Solicitud de canalización");
+        btn_busCanalizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_busCanalizacionActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btn_busCanalizacion);
 
-        jButton3.setText("Solicitud credito complementario");
-        jPanel6.add(jButton3);
+        btn_busCredito.setText("Solicitud credito complementario");
+        btn_busCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_busCreditoActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btn_busCredito);
 
-        jButton1.setText("Ver solicitud");
-        jPanel6.add(jButton1);
+        btn_busVerSolicitud.setText("Ver solicitud de credito");
+        jPanel6.add(btn_busVerSolicitud);
 
-        jButton4.setText("Ver credito");
-        jPanel6.add(jButton4);
+        btn_busVerCredito.setText("Ver credito");
+        jPanel6.add(btn_busVerCredito);
 
         pn_accionesBotones.add(jPanel6);
 
@@ -530,7 +563,7 @@ public class Alumno extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel21.setText("jLabel21");
+        jLabel21.setText("Numero de control");
 
         javax.swing.GroupLayout pn_buscarAlumnoLayout = new javax.swing.GroupLayout(pn_buscarAlumno);
         pn_buscarAlumno.setLayout(pn_buscarAlumnoLayout);
@@ -590,15 +623,15 @@ public class Alumno extends javax.swing.JPanel {
     private void tb_genConcenradoAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_genConcenradoAlumnosMouseClicked
         AlumnoVO a = new AlumnoVO();
         int fila = tb_genConcenradoAlumnos.getSelectedRow();
-        
+
         //Se obtienen los datos del objeto seleccionado en el arraylist
-        String nc = String.valueOf(listaAlumnos.get( fila ).getNC());
-        String nombre = String.valueOf(listaAlumnos.get( fila ).getNombre());
-        String apellidos = String.valueOf(listaAlumnos.get( fila ).getApellidos());
-        String semestre = String.valueOf(listaAlumnos.get( fila ).getSemestre());
-        String carrera = String.valueOf(listaAlumnos.get( fila ).getCarrera());
-        String grupo = String.valueOf(listaAlumnos.get( fila ).getGrupo());
-        
+        String nc = String.valueOf(listaAlumnos.get(fila).getNC());
+        String nombre = String.valueOf(listaAlumnos.get(fila).getNombre());
+        String apellidos = String.valueOf(listaAlumnos.get(fila).getApellidos());
+        String semestre = String.valueOf(listaAlumnos.get(fila).getSemestre());
+        String carrera = String.valueOf(listaAlumnos.get(fila).getCarrera());
+        String grupo = String.valueOf(listaAlumnos.get(fila).getGrupo());
+
         //Se pasan los datos al los text Field de la pestaña GENERAL
         tf_genNumeroControl.setText(nc);
         tf_genNombre.setText(nombre);
@@ -606,22 +639,150 @@ public class Alumno extends javax.swing.JPanel {
         tf_genSemestre.setText(semestre);
         tf_genCarrera.setText(carrera);
         tf_genGrupo.setText(grupo);
-        
+
     }//GEN-LAST:event_tb_genConcenradoAlumnosMouseClicked
+
+    private void btn_anaAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anaAceptarActionPerformed
+        AlumnoVO a = new AlumnoVO();
+        PersonaVO p = new PersonaVO();
+
+        try {
+            //Se obtienen los datos de los fields del panel agregar alumno
+            String nombre = tf_anaNombre.getText();
+            String apellidos = tf_anaApellidos.getText();
+            String nc = tf_anaNC.getText();
+            int semestre = cbx_anaSemestre.getSelectedIndex();
+            int grupo = cbx_anaGrupo.getSelectedIndex();
+            int carrera = cbx_anaCarrera.getSelectedIndex();
+
+            //Si el los combobox estan en la opcion por default
+            if (semestre == 0 || carrera == 0 || grupo == 0) {
+                JOptionPane.showMessageDialog(this, "Error: Verifique sus datos");
+            } else {
+                //Se construye el objeto alumno (tal ves seteé campos innecesarios)
+                a.setNombre(nombre);
+                a.setApellidos(apellidos);
+                a.setNC(Integer.parseInt(nc));
+                a.setSemestre(semestre);
+                a.setGrupo(String.valueOf(grupo));
+                a.setCarrera(String.valueOf(carrera));
+
+                //Se construye la persona
+                p.setNombre(nombre);
+                p.setApellidos(apellidos);
+                p.setNC(Integer.parseInt(nc));
+
+                //Se conecta con la BD
+                Connection con = new Conector.Conector().conectarMySQL();
+                AlumnoDAO alDao = new AlumnoDAO(con);
+                //Se inserta alumno
+                alDao.altaAlumno(grupo, p, carrera, a);
+
+                con.close();
+                //Se vuelve a llenar la tabla
+                llenarTablaAlumnos();
+                //Se actualiza la interfaz
+                tbp_pestanas.updateUI();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, verifique sus datos\n" + e.toString());
+        }
+
+    }//GEN-LAST:event_btn_anaAceptarActionPerformed
+
+    private void btn_anaLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anaLimpiarActionPerformed
+        //Se limpian los campos de añadir alumno
+        tf_anaApellidos.setText(null);
+        tf_anaNC.setText(null);
+        tf_anaNombre.setText(null);
+        cbx_anaCarrera.setSelectedIndex(0);
+        cbx_anaGrupo.setSelectedIndex(0);
+        cbx_anaSemestre.setSelectedIndex(0);
+    }//GEN-LAST:event_btn_anaLimpiarActionPerformed
+
+    private void btn_busBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_busBuscarActionPerformed
+        try {
+            Connection con = new Conector.Conector().conectarMySQL();
+            int busqueda = Integer.parseInt(tf_buscar.getText());
+
+            //Se busca el alumno por NC
+            AlumnoDAO adao = new AlumnoDAO(con);
+            AlumnoVO a = adao.getAlumnoByNC(busqueda);
+
+            if (a != null) {
+                int r = 0;
+                tb_busResultado.setValueAt(a.getIdAlumno(), r, 0);
+                tb_busResultado.setValueAt(a.getNC(), r, 1);
+                tb_busResultado.setValueAt(a.getNombre(), r, 2);
+                tb_busResultado.setValueAt(a.getApellidos(), r, 3);
+                tb_busResultado.setValueAt(a.getSemestre(), r, 4);
+                tb_busResultado.setValueAt(a.getCarrera(), r, 5);
+                tb_busResultado.setValueAt(a.getGrupo(), r, 6);
+            } else {
+                JOptionPane.showMessageDialog(this, "El alumno no ha sido encontrado");
+            }
+
+            con.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al buscar" + ex);
+        }
+
+    }//GEN-LAST:event_btn_busBuscarActionPerformed
+
+    private void btn_busCanalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_busCanalizacionActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(this, "Se perderán los cambios de ésta ventana interna\n ¿Desea continuar?");
+
+        //Se cierran los internalframes del JDesktopPane si se confirma
+        if (opcion == 0) {
+
+            //Se obtiene la fila seleccionada en la tabla
+            int fila = tb_busResultado.getSelectedRow();
+
+            //Se obtiene el numero de control de la fila seleccionada
+            int matricula = (Integer) tb_busResultado.getValueAt(fila, 1);
+
+            //Pero si no existe, crea una nueva ventana
+            JInternalFrame vHija = new JInternalFrame("Canalización psicologica", true, true, true, false);
+            Canalizacion hijo = new Canalizacion(matricula);
+            vHija.add(hijo);
+            vHija.pack();
+            vHija.setVisible(true);
+            for (JInternalFrame i : escritorio.getAllFrames()) {
+                i.setVisible(false);
+                i.dispose();
+            }
+            
+            escritorio.add(vHija);
+            escritorio.getDesktopManager().activateFrame(vHija);
+        }
+
+        //Si se genera un error de null pointer es por que mandé una variable a panel Canalizacion
+    }//GEN-LAST:event_btn_busCanalizacionActionPerformed
+
+    private void btn_busCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_busCreditoActionPerformed
+        //Pero si no existe, crea una nueva ventana
+        JInternalFrame vHija = new JInternalFrame("Solicitud del credito", true, true, true, false);
+        Credito hijo = new Credito();
+        vHija.add(hijo);
+        vHija.pack();
+        vHija.setVisible(true);
+        escritorio.add(vHija);
+        escritorio.getDesktopManager().activateFrame(vHija);
+    }//GEN-LAST:event_btn_busCreditoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_anaAceptar;
     private javax.swing.JButton btn_anaLimpiar;
     private javax.swing.JButton btn_busBuscar;
+    private javax.swing.JButton btn_busCanalizacion;
+    private javax.swing.JButton btn_busCredito;
+    private javax.swing.JButton btn_busVerCredito;
+    private javax.swing.JButton btn_busVerSolicitud;
     private javax.swing.JButton btn_genEditar;
     private javax.swing.JComboBox<String> cbx_anaCarrera;
     private javax.swing.JComboBox<String> cbx_anaGrupo;
     private javax.swing.JComboBox<String> cbx_anaSemestre;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -648,7 +809,6 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JList<String> li_genHistorial;
     private javax.swing.JPanel pn_accionesBotones;
     private javax.swing.JPanel pn_anadirAlumno;
@@ -657,6 +817,7 @@ public class Alumno extends javax.swing.JPanel {
     private javax.swing.JPanel pn_detallesAlumno;
     private javax.swing.JPanel pn_genTabla;
     private javax.swing.JPanel pn_general;
+    private javax.swing.JTable tb_busResultado;
     private javax.swing.JTable tb_genConcenradoAlumnos;
     private javax.swing.JTabbedPane tbp_pestanas;
     private javax.swing.JTextField tf_anaApellidos;
@@ -687,9 +848,29 @@ public class Alumno extends javax.swing.JPanel {
     private void llenarBD() throws SQLException {
         Connection con = new Conector.Conector().conectarMySQL();
         AlumnoDAO alDao = new AlumnoDAO(con);
-        
+
         listaAlumnos = alDao.consultaMasiva();
-        
+
+        con.close();
+    }
+
+    private void llenarAnadirAlumno() throws SQLException {
+        Connection con = new Conector.Conector().conectarMySQL();
+
+        //Lleno los combobox de grupos
+        GrupoDAO gdao = new GrupoDAO(con);
+        listaGrupos = gdao.consultaMasiva();
+
+        for (GrupoVO i : listaGrupos) {
+            cbx_anaGrupo.addItem(i.getLetra());
+        }
+
+        // lleno el combobox de carreras
+        CarreraDAO cdao = new CarreraDAO(con);
+        listaCarreras = cdao.consultaMasiva();
+        for (CarreraVO i : listaCarreras) {
+            cbx_anaCarrera.addItem(i.getNombre());
+        }
         con.close();
     }
 }
