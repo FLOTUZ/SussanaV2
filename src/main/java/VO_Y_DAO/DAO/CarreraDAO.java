@@ -15,6 +15,38 @@ public class CarreraDAO {
     public CarreraDAO(Connection conector) {
         this.conector = conector;
     }
+    public int altaCarrera(CarreraVO carrera) throws SQLException {
+        PreparedStatement objetoSQL = null;
+        ResultSet generatedKeys = null;
+        int id = 0;
+
+        String inserta = "call INSERT_carrera(?)";
+
+        try {
+            conector.setAutoCommit(false);
+
+            objetoSQL = conector.prepareStatement(inserta, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            objetoSQL.setString(1, carrera.getNombre());
+
+            //Se ejecuta la sentencia
+            objetoSQL.executeUpdate();
+
+            //Se recogen llaves generadas
+            generatedKeys = objetoSQL.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                id = generatedKeys.getConcurrency();
+            }
+            conector.commit();
+            JOptionPane.showMessageDialog(null, "Se creo el carrera con éxito");
+        } catch (SQLException ex1) {
+            conector.rollback();
+            System.out.println("Error en la transacción " + ex1.toString());
+            JOptionPane.showMessageDialog(null, "Error desde" + this.getClass().getName());
+        }
+        return id;
+    }
     
     public ArrayList<CarreraVO> consultaMasiva() {
         ArrayList<CarreraVO> lista_de_carreras= new ArrayList<>();

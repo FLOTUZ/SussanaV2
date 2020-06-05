@@ -16,6 +16,7 @@ import mantenimiento.Mantenimiento;
 import mdlaf.MaterialLookAndFeel;
 import mdlaf.themes.MaterialOceanicTheme;
 import ventanas.alumno.Alumno;
+import ventanas.grupo.Carrera;
 import ventanas.tutor.Tutor;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
@@ -46,6 +47,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         archivo = new javax.swing.JMenu();
         mi_cerrar = new javax.swing.JMenuItem();
         m_Grupios = new javax.swing.JMenu();
+        mi_agregarCarrera = new javax.swing.JMenuItem();
         mi_grupoReportes = new javax.swing.JMenuItem();
         m_tutores = new javax.swing.JMenu();
         mi_tutoresReportes = new javax.swing.JMenuItem();
@@ -161,6 +163,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(archivo);
 
         m_Grupios.setText("Grupos");
+
+        mi_agregarCarrera.setText("Agregar Carrera");
+        mi_agregarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_agregarCarreraActionPerformed(evt);
+            }
+        });
+        m_Grupios.add(mi_agregarCarrera);
 
         mi_grupoReportes.setText("Reportes");
         m_Grupios.add(mi_grupoReportes);
@@ -361,6 +371,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_mi_cerrarActionPerformed
 
+    private void mi_agregarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_agregarCarreraActionPerformed
+        JOptionPane.showMessageDialog(this, new Carrera());
+    }//GEN-LAST:event_mi_agregarCarreraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,6 +407,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu m_Grupios;
     private javax.swing.JMenu m_alumnos;
     private javax.swing.JMenu m_tutores;
+    private javax.swing.JMenuItem mi_agregarCarrera;
     private javax.swing.JMenuItem mi_bajaAusentismo;
     private javax.swing.JMenuItem mi_canalizacionPsicologica;
     private javax.swing.JMenuItem mi_cerrar;
