@@ -71,22 +71,6 @@ public class Tutor extends javax.swing.JPanel {
         btn_ediEditar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         tf_idPersona = new javax.swing.JTextField();
-        pn_buscar = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        tf_buscar = new javax.swing.JTextField();
-        btn_buscar = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        li_tutores = new javax.swing.JList<>();
-        btn_busVerTutor = new javax.swing.JButton();
-        pn_eliminar = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        li_eliTutores = new javax.swing.JList<>();
-        tf_eliConfirmacion = new javax.swing.JTextField();
-        btn_eliEliminar = new javax.swing.JButton();
-        btn_eliCancelar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Nuevo tutor");
@@ -202,11 +186,6 @@ public class Tutor extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Nuevo tutor", pn_agregar);
 
-        li_ediTutores.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         li_ediTutores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 li_ediTutoresMouseClicked(evt);
@@ -275,6 +254,8 @@ public class Tutor extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        tf_idPersona.setEnabled(false);
 
         javax.swing.GroupLayout pn_editarLayout = new javax.swing.GroupLayout(pn_editar);
         pn_editar.setLayout(pn_editarLayout);
@@ -382,205 +363,17 @@ public class Tutor extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Editar tutor", pn_editar);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Buscar Tutor por numero de control");
-
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Resultados");
-
-        btn_buscar.setText("Buscar");
-
-        li_tutores.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(li_tutores);
-
-        btn_busVerTutor.setText("Ver");
-
-        javax.swing.GroupLayout pn_buscarLayout = new javax.swing.GroupLayout(pn_buscar);
-        pn_buscar.setLayout(pn_buscarLayout);
-        pn_buscarLayout.setHorizontalGroup(
-            pn_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_buscarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pn_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_buscarLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_busVerTutor))
-                    .addGroup(pn_buscarLayout.createSequentialGroup()
-                        .addGroup(pn_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tf_buscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_buscar)
-                        .addGap(0, 320, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pn_buscarLayout.setVerticalGroup(
-            pn_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_buscarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pn_buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tf_buscar))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(btn_busVerTutor)
-                .addContainerGap(194, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Buscar tutor", pn_buscar);
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel11.setText("Eliminar");
-
-        jLabel12.setText("Escriba en numero de control del tutor para CONFIRMAR la eliminación");
-
-        li_eliTutores.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(li_eliTutores);
-
-        btn_eliEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_eliEliminar.setForeground(new java.awt.Color(255, 0, 0));
-        btn_eliEliminar.setText("Eliminar");
-
-        btn_eliCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_eliCancelar.setForeground(new java.awt.Color(0, 204, 0));
-        btn_eliCancelar.setText("Verificar");
-
-        javax.swing.GroupLayout pn_eliminarLayout = new javax.swing.GroupLayout(pn_eliminar);
-        pn_eliminar.setLayout(pn_eliminarLayout);
-        pn_eliminarLayout.setHorizontalGroup(
-            pn_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_eliminarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pn_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pn_eliminarLayout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_eliminarLayout.createSequentialGroup()
-                        .addGroup(pn_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pn_eliminarLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(pn_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(pn_eliminarLayout.createSequentialGroup()
-                                        .addComponent(btn_eliEliminar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btn_eliCancelar))
-                                    .addGroup(pn_eliminarLayout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tf_eliConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(192, 192, 192))))
-        );
-        pn_eliminarLayout.setVerticalGroup(
-            pn_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_eliminarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(pn_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_eliConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pn_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_eliEliminar)
-                    .addComponent(btn_eliCancelar))
-                .addContainerGap(243, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Eliminar tutor", pn_eliminar);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
-        //Nuevo tutor
-        try {
-            Connection con = new Conector.Conector().conectarMySQL();
-            TutorVO tvo = new TutorVO();
-            tvo.setNombre(tf_nueNombre.getText());
-            tvo.setApellidos(tf_nueApellido.getText());
-            tvo.setNC(Integer.parseInt(tf_nueNC.getText()));
-            tvo.setDepartamento(tf_nueDepa.getText());
-            tvo.setPuesto(tf_nuePuesto.getText());
-            tvo.setCorreo(tf_nueCorreo.getText());
-            tvo.setTelefono(Integer.parseInt(tf_nueTelefono.getText()));
-            tvo.setExtension(Integer.parseInt(tf_nueExt.getText()));
-
-            TutorDAO tdao = new TutorDAO(con);
-            tdao.altaTutor(tvo);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Ocurrio un error en Tutor.btn_acepatar()" + ex);
-        }
-
-    }//GEN-LAST:event_btn_aceptarActionPerformed
-
-    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
-        //Se vacian los campos
-        tf_nueNombre.setText("");
-        tf_nueApellido.setText("");
-        tf_nueNC.setText("");
-        tf_nueDepa.setText("");
-        tf_nuePuesto.setText("");
-        tf_nueCorreo.setText("");
-        tf_nueTelefono.setText("");
-        tf_nueExt.setText("");
-    }//GEN-LAST:event_btn_limpiarActionPerformed
-
-    private void li_ediTutoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_li_ediTutoresMouseClicked
-        //Se obtiene el indice seleccionado de la tabla
-        int indice = li_ediTutores.getSelectedIndex();
-        TutorVO selecc = listaTutores.get(indice);
-
-        //Se llenan los campos con el indice de la tabla seleccionado
-        tf_ediNombre.setText(selecc.getNombre());
-        tf_ediApellidos.setText(selecc.getApellidos());
-        tf_ediNC.setText(String.valueOf(selecc.getNC()));
-        tf_ediDepa.setText(selecc.getDepartamento());
-        tf_ediPuesto.setText(selecc.getPuesto());
-        tf_ediCorreo.setText(selecc.getCorreo());
-        tf_ediTelefono.setText(String.valueOf(selecc.getTelefono()));
-        tf_ediExt.setText(String.valueOf((selecc.getExtension())));
-        tf_idPersona.setText(String.valueOf(selecc.getIdPersona()));
-        tf_ediIdTutor.setText(String.valueOf(selecc.getIdTutor()));
-
-    }//GEN-LAST:event_li_ediTutoresMouseClicked
-
-    private void btn_ediEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ediEditarActionPerformed
-        tf_ediNombre.setEnabled(true);
-        tf_ediApellidos.setEnabled(true);
-        tf_ediNC.setEnabled(true);
-        tf_ediDepa.setEnabled(true);
-        tf_ediPuesto.setEnabled(true);
-        tf_ediCorreo.setEnabled(true);
-        tf_ediTelefono.setEnabled(true);
-        tf_ediExt.setEnabled(true);
-    }//GEN-LAST:event_btn_ediEditarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Se deshabilitan los campos
@@ -605,11 +398,22 @@ public class Tutor extends javax.swing.JPanel {
         tf_idPersona.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btn_ediEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ediEditarActionPerformed
+        tf_ediNombre.setEnabled(true);
+        tf_ediApellidos.setEnabled(true);
+        tf_ediNC.setEnabled(true);
+        tf_ediDepa.setEnabled(true);
+        tf_ediPuesto.setEnabled(true);
+        tf_ediCorreo.setEnabled(true);
+        tf_ediTelefono.setEnabled(true);
+        tf_ediExt.setEnabled(true);
+    }//GEN-LAST:event_btn_ediEditarActionPerformed
+
     private void btn_ediAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ediAceptarActionPerformed
         try {
             Connection con = new Conector.Conector().conectarMySQL();
             TutorDAO tdao = new TutorDAO(con);
-            
+
             TutorVO tuvo = new TutorVO();
             tuvo.setNombre(tf_ediNombre.getText());
             tuvo.setApellidos(tf_ediApellidos.getText());
@@ -621,9 +425,9 @@ public class Tutor extends javax.swing.JPanel {
             tuvo.setExtension(Integer.parseInt(tf_ediExt.getText()));
             tuvo.setIdTutor(Integer.parseInt(tf_ediIdTutor.getText()));
             tuvo.setIdPersona(Integer.parseInt(tf_idPersona.getText()));
-            
+
             tdao.actualizarTutor(tuvo);
-            
+
             con.close();
             llenarListaTutores();
         } catch (SQLException ex) {
@@ -631,21 +435,65 @@ public class Tutor extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btn_ediAceptarActionPerformed
 
+    private void li_ediTutoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_li_ediTutoresMouseClicked
+        //Se obtiene el indice seleccionado de la tabla
+        int indice = li_ediTutores.getSelectedIndex();
+        TutorVO selecc = listaTutores.get(indice);
+
+        //Se llenan los campos con el indice de la tabla seleccionado
+        tf_ediNombre.setText(selecc.getNombre());
+        tf_ediApellidos.setText(selecc.getApellidos());
+        tf_ediNC.setText(String.valueOf(selecc.getNC()));
+        tf_ediDepa.setText(selecc.getDepartamento());
+        tf_ediPuesto.setText(selecc.getPuesto());
+        tf_ediCorreo.setText(selecc.getCorreo());
+        tf_ediTelefono.setText(String.valueOf(selecc.getTelefono()));
+        tf_ediExt.setText(String.valueOf((selecc.getExtension())));
+        tf_idPersona.setText(String.valueOf(selecc.getIdPersona()));
+        tf_ediIdTutor.setText(String.valueOf(selecc.getIdTutor()));
+    }//GEN-LAST:event_li_ediTutoresMouseClicked
+
+    private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
+        //Nuevo tutor
+        try {
+            Connection con = new Conector.Conector().conectarMySQL();
+            TutorVO tvo = new TutorVO();
+            tvo.setNombre(tf_nueNombre.getText());
+            tvo.setApellidos(tf_nueApellido.getText());
+            tvo.setNC(Integer.parseInt(tf_nueNC.getText()));
+            tvo.setDepartamento(tf_nueDepa.getText());
+            tvo.setPuesto(tf_nuePuesto.getText());
+            tvo.setCorreo(tf_nueCorreo.getText());
+            tvo.setTelefono(Integer.parseInt(tf_nueTelefono.getText()));
+            tvo.setExtension(Integer.parseInt(tf_nueExt.getText()));
+
+            TutorDAO tdao = new TutorDAO(con);
+            tdao.altaTutor(tvo);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error en Tutor.btn_acepatar()" + ex);
+        }
+    }//GEN-LAST:event_btn_aceptarActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        //Se vacian los campos
+        tf_nueNombre.setText("");
+        tf_nueApellido.setText("");
+        tf_nueNC.setText("");
+        tf_nueDepa.setText("");
+        tf_nuePuesto.setText("");
+        tf_nueCorreo.setText("");
+        tf_nueTelefono.setText("");
+        tf_nueExt.setText("");
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_aceptar;
-    private javax.swing.JButton btn_busVerTutor;
-    private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_ediAceptar;
     private javax.swing.JButton btn_ediEditar;
-    private javax.swing.JButton btn_eliCancelar;
-    private javax.swing.JButton btn_eliEliminar;
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -661,23 +509,15 @@ public class Tutor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JList<String> li_ediTutores;
-    private javax.swing.JList<String> li_eliTutores;
-    private javax.swing.JList<String> li_tutores;
     private javax.swing.JPanel pn_agregar;
-    private javax.swing.JPanel pn_buscar;
     private javax.swing.JPanel pn_editar;
-    private javax.swing.JPanel pn_eliminar;
-    private javax.swing.JTextField tf_buscar;
     private javax.swing.JTextField tf_ediApellidos;
     private javax.swing.JTextField tf_ediCorreo;
     private javax.swing.JTextField tf_ediDepa;
@@ -687,7 +527,6 @@ public class Tutor extends javax.swing.JPanel {
     private javax.swing.JTextField tf_ediNombre;
     private javax.swing.JTextField tf_ediPuesto;
     private javax.swing.JTextField tf_ediTelefono;
-    private javax.swing.JTextField tf_eliConfirmacion;
     private javax.swing.JTextField tf_idPersona;
     private javax.swing.JTextField tf_nueApellido;
     private javax.swing.JTextField tf_nueCorreo;

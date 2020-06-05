@@ -28,22 +28,6 @@ public class Grupos extends javax.swing.JPanel {
     private void initComponents() {
 
         tb_pane = new javax.swing.JTabbedPane();
-        pn_grupos = new javax.swing.JPanel();
-        pn_alumnosenBD = new javax.swing.JPanel();
-        sp_lista = new javax.swing.JScrollPane();
-        li_grupos = new javax.swing.JList<>();
-        sp_tabla = new javax.swing.JScrollPane();
-        tb_detallesGrupo = new javax.swing.JTable();
-        pn_actualizarDatos = new javax.swing.JPanel();
-        lbl_id = new javax.swing.JLabel();
-        lbl_carrera = new javax.swing.JLabel();
-        lbl_semestre = new javax.swing.JLabel();
-        lbl_nalumnos = new javax.swing.JLabel();
-        tf_id = new javax.swing.JTextField();
-        tf_carrera = new javax.swing.JTextField();
-        tf_semestre = new javax.swing.JTextField();
-        tf_nAlumnos = new javax.swing.JTextField();
-        btn_aplicar = new javax.swing.JButton();
         pn_añadirGrupos = new javax.swing.JPanel();
         lbl_carreraAnadir = new javax.swing.JLabel();
         lbl_semestreAnadir = new javax.swing.JLabel();
@@ -65,134 +49,6 @@ public class Grupos extends javax.swing.JPanel {
         tf_alumnosEliminar = new javax.swing.JTextField();
         btn_eliminar = new javax.swing.JButton();
         btn_cancelarEliminar = new javax.swing.JButton();
-        pn_reporteGrupos = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-
-        pn_grupos.setLayout(new java.awt.GridLayout(1, 2));
-
-        pn_alumnosenBD.setBorder(javax.swing.BorderFactory.createTitledBorder("Éstos son los grupos Actuales en la BD"));
-        pn_alumnosenBD.setLayout(new java.awt.GridLayout(2, 0));
-
-        li_grupos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Grupo 1", "Grupo 2", "Grupo 3" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        li_grupos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        sp_lista.setViewportView(li_grupos);
-
-        pn_alumnosenBD.add(sp_lista);
-
-        tb_detallesGrupo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "id", "Carrera", "Semestre", "# Alumnos"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        sp_tabla.setViewportView(tb_detallesGrupo);
-
-        pn_alumnosenBD.add(sp_tabla);
-
-        pn_grupos.add(pn_alumnosenBD);
-
-        pn_actualizarDatos.setBorder(javax.swing.BorderFactory.createTitledBorder("Actualizar datos de:"));
-
-        lbl_id.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
-        lbl_id.setText("ID:");
-
-        lbl_carrera.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
-        lbl_carrera.setText("Carrera");
-
-        lbl_semestre.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
-        lbl_semestre.setText("Semestre");
-
-        lbl_nalumnos.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
-        lbl_nalumnos.setText("# Alumnos");
-
-        tf_id.setEditable(false);
-
-        btn_aplicar.setText("Aplicar");
-
-        javax.swing.GroupLayout pn_actualizarDatosLayout = new javax.swing.GroupLayout(pn_actualizarDatos);
-        pn_actualizarDatos.setLayout(pn_actualizarDatosLayout);
-        pn_actualizarDatosLayout.setHorizontalGroup(
-            pn_actualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_actualizarDatosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pn_actualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pn_actualizarDatosLayout.createSequentialGroup()
-                        .addGroup(pn_actualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbl_carrera, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_nalumnos, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                            .addComponent(lbl_semestre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pn_actualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_nAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_carrera, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_semestre, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pn_actualizarDatosLayout.createSequentialGroup()
-                        .addComponent(lbl_id, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(tf_id, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_aplicar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
-        );
-        pn_actualizarDatosLayout.setVerticalGroup(
-            pn_actualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_actualizarDatosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pn_actualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tf_id, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pn_actualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl_carrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tf_carrera, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pn_actualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl_semestre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tf_semestre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pn_actualizarDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl_nalumnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tf_nAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btn_aplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(214, Short.MAX_VALUE))
-        );
-
-        pn_grupos.add(pn_actualizarDatos);
-
-        tb_pane.addTab("Grupos", pn_grupos);
 
         lbl_carreraAnadir.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
         lbl_carreraAnadir.setText("Carrera");
@@ -355,104 +211,18 @@ public class Grupos extends javax.swing.JPanel {
 
         tb_pane.addTab("Eliminar Grupos", pn_eliminarGrupos);
 
-        pn_reporteGrupos.setLayout(new java.awt.GridLayout(2, 1));
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Seleccione"));
-
-        jXDatePicker1.setEnabled(false);
-
-        jXDatePicker2.setEnabled(false);
-
-        jLabel1.setText("Desde");
-
-        jLabel2.setText("Hasta");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoy", "Ayer", "Antier", "Siempre", "Rango de fechas" }));
-
-        jLabel3.setText("Reporte de");
-
-        jButton1.setText("Generar Reporte de tabla");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
-
-        pn_reporteGrupos.add(jPanel1);
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Otros tipos de reporte (Cooming soon)");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(108, 108, 108))
-        );
-
-        pn_reporteGrupos.add(jPanel2);
-
-        tb_pane.addTab("Reporte", pn_reporteGrupos);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tb_pane, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                .addComponent(tb_pane)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tb_pane, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                .addComponent(tb_pane)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -460,52 +230,25 @@ public class Grupos extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_anadir;
-    private javax.swing.JButton btn_aplicar;
     private javax.swing.JButton btn_cancelarEliminar;
     private javax.swing.JButton btn_eliminar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
-    private javax.swing.JLabel lbl_carrera;
     private javax.swing.JLabel lbl_carreraAnadir;
     private javax.swing.JLabel lbl_carreraEliminar;
-    private javax.swing.JLabel lbl_id;
-    private javax.swing.JLabel lbl_nalumnos;
     private javax.swing.JLabel lbl_nalumnosAnadir;
     private javax.swing.JLabel lbl_nalumnosEliminar;
-    private javax.swing.JLabel lbl_semestre;
     private javax.swing.JLabel lbl_semestreAnadir;
     private javax.swing.JLabel lbl_semestreEliminar;
-    private javax.swing.JList<String> li_grupos;
     private javax.swing.JList<String> li_gruposEliminar;
-    private javax.swing.JPanel pn_actualizarDatos;
-    private javax.swing.JPanel pn_alumnosenBD;
     private javax.swing.JPanel pn_añadirGrupos;
     private javax.swing.JPanel pn_delete;
     private javax.swing.JPanel pn_detallesEliminar;
     private javax.swing.JPanel pn_eliminarGrupos;
-    private javax.swing.JPanel pn_grupos;
-    private javax.swing.JPanel pn_reporteGrupos;
-    private javax.swing.JScrollPane sp_lista;
-    private javax.swing.JScrollPane sp_tabla;
-    private javax.swing.JTable tb_detallesGrupo;
     private javax.swing.JTabbedPane tb_pane;
     private javax.swing.JTextField tf_alumnosAnadir;
     private javax.swing.JTextField tf_alumnosEliminar;
-    private javax.swing.JTextField tf_carrera;
     private javax.swing.JTextField tf_carreraAnadir;
     private javax.swing.JTextField tf_carreraEliminar;
-    private javax.swing.JTextField tf_id;
-    private javax.swing.JTextField tf_nAlumnos;
-    private javax.swing.JTextField tf_semestre;
     private javax.swing.JTextField tf_semestreAnadir;
     private javax.swing.JTextField tf_semestreEliminar;
     // End of variables declaration//GEN-END:variables
