@@ -14,6 +14,39 @@ public class GrupoDAO {
     public GrupoDAO(Connection conector) {
         this.conector = conector;
     }
+    public int altaGrupo(GrupoVO grupo) throws SQLException {
+        PreparedStatement objetoSQL = null;
+        ResultSet generatedKeys = null;
+        int id = 0;
+
+        String inserta = "call INSERT_grupo(?,?)";
+
+        try {
+            conector.setAutoCommit(false);
+
+            objetoSQL = conector.prepareStatement(inserta, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            objetoSQL.setString(1, grupo.getLetra());
+            objetoSQL.setInt(2, grupo.getTutor_iddocente());
+
+            //Se ejecuta la sentencia
+            objetoSQL.executeUpdate();
+
+            //Se recogen llaves generadas
+            generatedKeys = objetoSQL.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                id = generatedKeys.getConcurrency();
+            }
+            conector.commit();
+            JOptionPane.showMessageDialog(null, "Se creo el grupo con éxito");
+        } catch (SQLException ex1) {
+            conector.rollback();
+            System.out.println("Error en la transacción " + ex1.toString());
+            JOptionPane.showMessageDialog(null, "Error desde" + this.getClass().getName());
+        }
+        return id;
+    }
     
      public ArrayList<GrupoVO> consultaMasiva() {
         ArrayList<GrupoVO> lista_de_grupos= new ArrayList<>();
