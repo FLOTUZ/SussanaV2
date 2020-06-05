@@ -267,17 +267,30 @@ begin
     from tutor;
 end;
 
-create procedure INSERT_tutor(_departamento varchar(45),
+create procedure INSERT_tutor(_nombre varchar(45),
+                              _apellidos varchar(90),
+                              _NC int,
+                              _departamento varchar(45),
                               _puesto varchar(45),
                               _correo varchar(45),
                               _telefono int(20),
-                              _extension int(4),
-                              _persona_idPersona int)
+                              _extension int(4))
     -- ---------------------------------------------
 -- Se inserta un tutor
 -- @Autor: Emmanuel Esquivel Pardo
 -- ---------------------------------------------
 begin
+
+    -- Inserta persona
+    insert into persona(nombre,
+                        apellidos,
+                        NC)
+    VALUES (_nombre,
+            _apellidos,
+            _NC);
+    set @idPersona = (select idPersona from persona where NC like _NC);
+
+    -- Inserta tutor
     insert into tutor (departamento,
                        puesto,
                        correo,
@@ -289,7 +302,7 @@ begin
             _correo,
             _telefono,
             _extension,
-            _persona_idPersona);
+            @idPersona);
 end;
 
 create procedure SELECT_carreras()

@@ -21,20 +21,21 @@ public class TutorDAO {
         ResultSet generatedKeys = null;
         int id = 0;
 
-        String inserta = "call INSERT_tutor(?,?,?,?,?,?)";
+        String inserta = "call INSERT_tutor(?,?,?,?,?,?,?,?)";
 
         try {
             conector.setAutoCommit(false);
 
             objetoSQL = conector.prepareStatement(inserta, PreparedStatement.RETURN_GENERATED_KEYS);
 
-            objetoSQL.setString(1, tutor.getDepartamento());
-            objetoSQL.setString(2, tutor.getPuesto());
-            objetoSQL.setString(3, tutor.getCorreo());
-            objetoSQL.setInt(4, tutor.getTelefono());
-            objetoSQL.setInt(5, tutor.getExtension());
-            objetoSQL.setInt(6, tutor.getIdPersona());
-
+            objetoSQL.setString(1, tutor.getNombre());
+            objetoSQL.setString(2, tutor.getApellidos());
+            objetoSQL.setInt(3, tutor.getNC());
+            objetoSQL.setString(4, tutor.getDepartamento());
+            objetoSQL.setString(5, tutor.getPuesto());
+            objetoSQL.setString(6, tutor.getCorreo());
+            objetoSQL.setInt(7, tutor.getTelefono());
+            objetoSQL.setInt(8, tutor.getExtension());
             //Se ejecuta la sentencia
             objetoSQL.executeUpdate();
 
@@ -45,7 +46,7 @@ public class TutorDAO {
                 id = generatedKeys.getConcurrency();
             }
             conector.commit();
-            JOptionPane.showMessageDialog(null, "Se creó nuevo alumno con éxito");
+            JOptionPane.showMessageDialog(null, "Se creo nuevo tutor con éxito");
         } catch (SQLException ex1) {
             conector.rollback();
             System.out.println("Error en la transacción " + ex1.toString());
