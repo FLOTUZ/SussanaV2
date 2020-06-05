@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Studio" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="25d79226-4bed-4136-9806-6c751a3a859e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<queryString>
+		<![CDATA[select b.idbajaAusentismo,
+       b.fecha,
+       concat( p.nombre,p.apellidos) as nombre,
+       p.NC,
+       b.docenteReporta,
+       b.asignatura,
+       b.clave,
+       b.fechasInasistenciasInjustificadas,
+       b.posibleCausa,
+       b.resultadoinvestigacion
+from bajaausentismo b
+         inner join alumno a on b.alumno_idAlumno = a.idAlumno
+         inner join persona p on a.Persona_idPersona = p.idPersona;]]>
+	</queryString>
+	<field name="idbajaAusentismo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="docenteReporta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="asignatura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="clave" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechasInasistenciasInjustificadas" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="posibleCausa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="resultadoinvestigacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band height="752" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="572" height="741" uuid="155e0598-2195-4418-afcd-2575d4105cee"/>
+				<imageExpression><![CDATA["E:\\#T A R E A S\\5 SEM\\Admin Proycts\\Templates\\SussanaV2\\src\\main\\java\\images\\Aguila_Fondo_2_3.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<staticText>
+				<reportElement x="323" y="57" width="249" height="15" forecolor="#999999" uuid="e2b66215-2dd9-4b67-a4d5-3c5e162752bb"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Consolas" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[INSTITUTO TECNOLOGICO DE MORELIA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="323" y="0" width="249" height="57" uuid="5750131c-5596-44a7-869c-b39e63bccb07"/>
+				<imageExpression><![CDATA["E:\\#T A R E A S\\5 SEM\\Admin Proycts\\Templates\\SussanaV2\\src\\main\\java\\images\\Tecnologico.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="92" width="206" height="20" uuid="f956862b-065c-4468-8c4c-748fee94562b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSTITUTO TECNOLOGICO DE MORELIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="112" width="186" height="20" uuid="26e5d761-f260-49cb-bdb2-9364404f85f4"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[SUBDIRECCION ACADEMICA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="1" y="0" width="320" height="47" uuid="0466b73a-6fed-4e62-a473-e57fdb65e1c2"/>
+				<imageExpression><![CDATA["E:\\#T A R E A S\\5 SEM\\Admin Proycts\\Templates\\SussanaV2\\src\\main\\java\\images\\Educacion_2.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="206" y="77" width="309" height="15" forecolor="#999999" uuid="39b1e710-6b5b-43ad-baaf-5fd16807bd57"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Consolas" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA["2020,Año de Leona Vicario, Benemerita Madre de la Patria"]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="260" height="20" uuid="abb3581c-e138-4483-9606-5d33d6ebcfc6"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[DEPARTAMENTO DE DESARROLLO ACADEMICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="307" height="20" uuid="d1f120e4-9277-41d5-bac0-f0a2cc562b33"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[COORDINACION INSTITUCIONAL DEL PROGRAMA TUTORIAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="40" width="424" height="27" uuid="b8217bf9-7624-4acb-8285-d158a863e8c8"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE INVESTIGACION PARA LA PREVENCION DE BAJA POR AUSENTISMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="64" width="313" height="20" uuid="70c50c91-0afe-46da-81ae-a350d0acf645"/>
+				<textElement>
+					<font fontName="Consolas" size="12"/>
+				</textElement>
+				<text><![CDATA[ESPACIO PARA SER LLENADO POR EL(LA) DOCENTE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="116" splitType="Stretch">
+			<staticText>
+				<reportElement x="347" y="25" width="45" height="18" uuid="ffaba088-bce7-40e2-a78a-a817401b1bfa"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="392" y="45" width="179" height="1" uuid="cd36da87-dec1-408d-bf60-588078d7aa1c"/>
+			</line>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="432" y="28" width="100" height="20" uuid="b59384ef-480e-4c0d-8f83-9a43fb4488d4"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="280" splitType="Stretch">
+			<staticText>
+				<reportElement x="142" y="159" width="313" height="34" uuid="0f2fd72a-bf6f-4662-aee2-78592a8398ce"/>
+				<textElement>
+					<font fontName="Consolas" size="12"/>
+				</textElement>
+				<text><![CDATA[ESPACIO PARA SER LLENADO POR EL(LA) JEFE DE DEPRTAMENTO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="193" width="569" height="83" uuid="a8d11c17-9d29-4e26-a913-6d00e227c604"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="193" width="321" height="19" uuid="511bb8fd-deb0-4a1f-b5f6-23fed8362d3c"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion de la Investigacion de la causa del ausentismo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="212" width="571" height="1" uuid="b56f691f-2a05-4cfd-a163-333c23d035ce"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="66" width="196" height="19" uuid="217cfa79-9671-4e91-9b6b-7968a260b4c2"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fechas de inasistencia injustificada:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="87" width="115" height="53" uuid="a6819749-7c9d-4925-85e5-9bbb34d7d333"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Posible cuasa de la Inasistencia:(opcional si algun alumnno aporta algun dato)]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement x="0" y="2" width="1" height="137" uuid="80a10287-eb25-41b9-b28a-e18dd342c3ae"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="571" height="1" uuid="054fcb24-4d2a-419a-b7f9-378b35b7d944"/>
+			</line>
+			<staticText>
+				<reportElement x="415" y="40" width="49" height="20" uuid="f5ad0880-4095-40bf-aa14-28e94856cfd8"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLAVE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="404" y="0" width="60" height="20" uuid="1b4836f8-8ad1-408e-8115-806ea707d14d"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.Control]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="66" width="571" height="1" uuid="f9a11184-8b7c-4105-9622-ea90bfe63308"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="21" width="132" height="19" uuid="9128670a-b76b-4d0f-9c24-ecadda0d184e"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Docente que reporta:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="40" width="571" height="1" uuid="82b0c2bd-6e89-4c5e-b181-85afefb17460"/>
+			</line>
+			<line>
+				<reportElement x="0" y="20" width="571" height="1" uuid="cbdda4d4-b076-4819-b7cb-bb78338f1d85"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="464" y="41" width="1" height="25" uuid="f457e8cf-8977-4594-b0b6-0c7b12bdc54f"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="131" y="40" width="1" height="26" uuid="312ef4a7-0394-4517-a94e-9b940e2df787"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="3" width="132" height="19" uuid="4deedd4a-1fd0-48a3-826d-c3cb0c65cbc4"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre del Alumno(a)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="40" width="116" height="25" uuid="65240dd2-5317-4a24-ad47-70ff3f06d1b5"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Asignatura de inicidencia:]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement x="131" y="87" width="1" height="53" uuid="1acc28d0-8cba-4f6a-80c5-f49059969384"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="570" y="2" width="1" height="138" uuid="6c5d38e4-f624-43a1-b68c-7a238a56397f"/>
+			</line>
+			<line>
+				<reportElement x="1" y="86" width="571" height="1" uuid="89ae1522-756e-4824-9dfe-aa3a519ee818"/>
+			</line>
+			<line>
+				<reportElement x="0" y="139" width="571" height="1" uuid="f8ef175d-f581-4318-901d-147ec63f0ae1"/>
+			</line>
+			<textField>
+				<reportElement x="152" y="3" width="252" height="17" uuid="34f77458-869d-44d2-b683-8c768202db3e"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="2" width="96" height="18" uuid="18770482-7093-4ce6-a461-bb3117442104"/>
+				<textFieldExpression><![CDATA[$F{NC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="20" width="418" height="20" uuid="c5969905-e62a-4833-a831-4c7c93cd6d8b"/>
+				<textFieldExpression><![CDATA[$F{docenteReporta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="45" width="250" height="20" uuid="80d93be7-0287-495f-85f9-cd15af1d932a"/>
+				<textFieldExpression><![CDATA[$F{asignatura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="45" width="96" height="20" uuid="342a4c92-60ad-428f-b744-fdb5f74867cf"/>
+				<textFieldExpression><![CDATA[$F{clave}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="206" y="67" width="361" height="18" uuid="f32979a3-669d-41cb-9804-87160b0a1750"/>
+				<textFieldExpression><![CDATA[$F{fechasInasistenciasInjustificadas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="87" width="425" height="52" uuid="956bd794-d4cd-49b9-8189-3bb99aa2eff6"/>
+				<textFieldExpression><![CDATA[$F{posibleCausa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="213" width="563" height="63" uuid="16ac3600-a0d6-4a1b-a926-d0bec34040d4"/>
+				<textFieldExpression><![CDATA[$F{resultadoinvestigacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="140" splitType="Stretch">
+			<line>
+				<reportElement x="11" y="62" width="100" height="1" uuid="16abe21c-acc7-48cc-bd41-b7a99bc122ab"/>
+			</line>
+			<staticText>
+				<reportElement x="23" y="64" width="79" height="15" uuid="1ee23fc3-36ce-4726-98ee-ea0a0302ebe2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre y Firma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="81" width="119" height="20" uuid="76920f61-6fb6-47c6-9d3a-b3b8e0fb7fbf"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jefe de Departamento]]></text>
+			</staticText>
+			<line>
+				<reportElement x="389" y="47" width="168" height="1" uuid="8966bcd1-0c31-44a2-a89a-427b9e81b3f7"/>
+			</line>
+			<staticText>
+				<reportElement x="433" y="49" width="79" height="15" uuid="4c534f38-14d3-432f-a6a7-02efdfa5b95f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre y Firma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="64" width="191" height="34" uuid="372a71e6-7ca6-4c7d-bd0e-3648917d260d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Coordinacion Institucional del Programa Tutorias]]></text>
+			</staticText>
+			<image>
+				<reportElement x="1" y="102" width="50" height="38" uuid="5b823ebf-a676-4b01-9029-66ff55ee9762"/>
+				<imageExpression><![CDATA["E:\\#T A R E A S\\5 SEM\\Admin Proycts\\Templates\\SussanaV2\\src\\main\\java\\images\\logoITM.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="464" y="102" width="63" height="38" uuid="4c680106-ff84-4a5d-a96e-6d9f0cc37781"/>
+				<imageExpression><![CDATA["E:\\#T A R E A S\\5 SEM\\Admin Proycts\\Templates\\SussanaV2\\src\\main\\java\\images\\100.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="532" y="102" width="39" height="38" uuid="608a6990-a7fa-4761-98f3-093a1be6187e"/>
+				<imageExpression><![CDATA["E:\\#T A R E A S\\5 SEM\\Admin Proycts\\Templates\\SussanaV2\\src\\main\\java\\images\\150.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="107" y="102" width="45" height="38" uuid="697bfc29-3f96-4f85-80e6-3d61ad1fe4a8"/>
+				<imageExpression><![CDATA["E:\\#T A R E A S\\5 SEM\\Admin Proycts\\Templates\\SussanaV2\\src\\main\\java\\images\\55.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="53" y="102" width="49" height="38" uuid="95c975cb-1894-420f-bff5-bfd4f62fb3c1"/>
+				<imageExpression><![CDATA["E:\\#T A R E A S\\5 SEM\\Admin Proycts\\Templates\\SussanaV2\\src\\main\\java\\images\\ITM_50.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="174" y="102" width="258" height="38" forecolor="#999999" uuid="bf99d09c-ce8e-471a-86b9-e145b5b4a3ee"/>
+				<textElement textAlignment="Center">
+					<font fontName="Consolas" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Av. Tecnológico 1500, Col. Lomas de Santiaguito,
+C.P. 58120, Morelia, Michoacán. Tel. (443) 312 15 70,
+Ext. 233, E-mail: sistemas@morelia.tecnm.mx
+www.tecnm.mx | www.morelia.tecnm.mx]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="101" width="566" height="1" forecolor="#FF9900" uuid="e163467c-5dc8-45cf-9a5b-b8ac66c425e2"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

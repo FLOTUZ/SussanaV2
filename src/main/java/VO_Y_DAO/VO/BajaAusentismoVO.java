@@ -11,6 +11,7 @@ public class BajaAusentismoVO {
     private String fechasInasistencia;
     private String posibleCausa;
     private int alumno_idAlumno;
+    private String resultado;
 
     public BajaAusentismoVO() {
     }
@@ -90,8 +91,19 @@ public class BajaAusentismoVO {
         this.alumno_idAlumno = alumno_idAlumno;
     }
 
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
+    }
+
     @Override
     public String toString() {
-        return "BajaAusentismoVO{" + "idbajaAusentismo=" + idbajaAusentismo + ", fecha=" + fecha + ", docenteReporta=" + docenteReporta + ", asignatura=" + asignatura + ", clave=" + clave + ", fechasInasistencia=" + fechasInasistencia + ", posibleCausa=" + posibleCausa + ", alumno_idAlumno=" + alumno_idAlumno + '}';
+        return "BajaAusentismoVO{" + "idbajaAusentismo=" + idbajaAusentismo + ", fecha=" + fecha + ", docenteReporta=" + docenteReporta + ", asignatura=" + asignatura + ", clave=" + clave + ", fechasInasistencia=" + fechasInasistencia + ", posibleCausa=" + posibleCausa + ", alumno_idAlumno=" + alumno_idAlumno + ", resultado=" + resultado + '}';
     }
+    
+
+    
 }

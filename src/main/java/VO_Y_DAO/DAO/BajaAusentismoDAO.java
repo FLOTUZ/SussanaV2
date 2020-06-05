@@ -32,7 +32,7 @@ public class BajaAusentismoDAO {
             objetoSQL.setInt(4, bajaAusentismo.getClave());
             objetoSQL.setString(5, bajaAusentismo.getFechasInasistencia());
             objetoSQL.setString(6, bajaAusentismo.getPosibleCausa());
-            objetoSQL.setString(7, "");
+            objetoSQL.setString(7, bajaAusentismo.getResultado());
             objetoSQL.setInt(8, bajaAusentismo.getAlumno_idAlumno());
 
             //Se ejecuta la sentencia

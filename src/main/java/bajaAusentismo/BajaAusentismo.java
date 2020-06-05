@@ -13,6 +13,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class BajaAusentismo extends javax.swing.JPanel {
 
@@ -95,6 +102,11 @@ public class BajaAusentismo extends javax.swing.JPanel {
         });
 
         btn_imprimir.setText("Imprimir");
+        btn_imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_imprimirActionPerformed(evt);
+            }
+        });
 
         cbx_alumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Seleccione]" }));
 
@@ -267,23 +279,44 @@ public class BajaAusentismo extends javax.swing.JPanel {
                 bavo.setAsignatura(tf_asignatura.getText());
                 bavo.setClave(Integer.parseInt(tf_clave.getText()));
                 bavo.setPosibleCausa(ta_posibleCausa.getText());
+                bavo.setResultado(ta_ResultadoInvestigación.getText());
 
                 //Se crea el JSON para ingresar un arreglo a la BD
                 Gson g = new Gson();
                 String ausent = g.toJson(listaAusentismos);
                 bavo.setFechasInasistencia(ausent);
-                
+
                 //Se fa de alta en la BD
                 Connection con = new Conector.Conector().conectarMySQL();
                 BajaAusentismoDAO badao = new BajaAusentismoDAO(con);
                 badao.altaBajaAusentismo(bavo);
                 con.close();
-                
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Verifique los campos (clave es int)");
             }
         }
     }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void btn_imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imprimirActionPerformed
+        try {
+            Connection conn = new Conector.Conector().conectarMySQL();
+
+            JasperReport reporte = null;
+            String path = "src\\main\\java\\reportes\\Ausentismo.jasper";
+
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+            JasperPrint jprint = JasperFillManager.fillReport(path, null, conn);
+
+            JasperViewer view = new JasperViewer(jprint, false);
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            view.setVisible(true);
+
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(this,"Error reportes:"+ ex);
+        }
+    }//GEN-LAST:event_btn_imprimirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
