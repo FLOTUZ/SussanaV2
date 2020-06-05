@@ -15,8 +15,8 @@ public class TutorDAO {
     public TutorDAO(Connection conector) {
         this.conector = conector;
     }
-    
-     public int altaTutor(TutorVO tutor) throws SQLException {
+
+    public int altaTutor(TutorVO tutor) throws SQLException {
         PreparedStatement objetoSQL = null;
         ResultSet generatedKeys = null;
         int id = 0;
@@ -54,9 +54,9 @@ public class TutorDAO {
         }
         return id;
     }
-    
-     public ArrayList<TutorVO> consultaMasiva() {
-        ArrayList<TutorVO> lista_tutores= new ArrayList<>();
+
+    public ArrayList<TutorVO> consultaMasiva() {
+        ArrayList<TutorVO> lista_tutores = new ArrayList<>();
 
         TutorVO tutor = null;
         //Se encapsula query
@@ -65,14 +65,14 @@ public class TutorDAO {
         ResultSet resultSet = null;
 
         //Se crea el query para ponerlo en el objeto PrepareStatement
-        String consultaSQL ="call SELECT_tutor()";
+        String consultaSQL = "call SELECT_tutor()";
 
         try {
             consulta = conector.prepareStatement(consultaSQL);
             resultSet = consulta.executeQuery();
 
             //Mientras haya registros de la BD se ejecuta este codigo
-            while(resultSet != null && resultSet.next()){
+            while (resultSet != null && resultSet.next()) {
 
                 //Se crea el objeto con los datos que retorna la BD
                 tutor = new TutorVO();
@@ -92,8 +92,53 @@ public class TutorDAO {
 
         } catch (SQLException ex) {
             System.out.println("Error en la transacción " + ex.toString());
-            JOptionPane.showMessageDialog(null, "Error desde: TutorDAO.ConsultaMasiva" );
+            JOptionPane.showMessageDialog(null, "Error desde: TutorDAO.ConsultaMasiva");
         }
         return lista_tutores;
+    }
+
+    public int actualizarTutor(TutorVO tutor) {
+        PreparedStatement objetoSQL = null;
+        ResultSet generatedKeys = null;
+
+        int id = 0;
+        String actualiza = "call UPDATE_tutor(?,?,?,?,?,?,?,?,?,?)";
+
+        try {
+            conector.setAutoCommit(false);
+
+            objetoSQL = conector.prepareStatement(actualiza, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            objetoSQL.setInt(1, tutor.getNC());
+            objetoSQL.setString(2, tutor.getNombre());
+            objetoSQL.setString(3, tutor.getApellidos());
+            objetoSQL.setInt(4, tutor.getIdPersona());
+            objetoSQL.setString(5, tutor.getDepartamento());
+            objetoSQL.setString(6, tutor.getPuesto());
+            objetoSQL.setString(7, tutor.getCorreo());
+            objetoSQL.setInt(8, tutor.getTelefono());
+            objetoSQL.setInt(9, tutor.getExtension());
+            objetoSQL.setInt(10, tutor.getIdTutor());
+
+            //Se ejecuta la sentencia
+            objetoSQL.executeUpdate();
+
+            //Se recogen llaves generadas
+            generatedKeys = objetoSQL.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                id = generatedKeys.getConcurrency();
+            }
+            conector.commit();
+            JOptionPane.showMessageDialog(null, "Se acualizó correctamente la info de " + tutor.getNombre());
+        } catch (SQLException e) {
+            try {
+                conector.rollback();
+            } catch (SQLException ex1) {
+                System.out.println("Error en la transacción " + ex1.toString());
+                JOptionPane.showMessageDialog(null, "Error desde TutorDAO.ActualozarTutor()");
+            }
+        }
+        return id;
     }
 }

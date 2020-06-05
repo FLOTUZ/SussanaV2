@@ -151,13 +151,13 @@ public class AlumnoDAO {
             objetoSQL = conector.prepareStatement(actualiza,PreparedStatement.RETURN_GENERATED_KEYS);
 
             objetoSQL.setInt(1, alumno.getIdAlumno());
-            objetoSQL.setInt(1, alumno.getSemestre());
-            objetoSQL.setInt(1, alumno.getGrupo_idGrupo());
-            objetoSQL.setInt(1, alumno.getCarrera_idcarrera());
-            objetoSQL.setInt(1, alumno.getNC());
-            objetoSQL.setString(1, alumno.getNombre());
-            objetoSQL.setString(1, alumno.getApellidos());
-            objetoSQL.setInt(1, alumno.getPersona_idPersona());
+            objetoSQL.setInt(2, alumno.getSemestre());
+            objetoSQL.setInt(3, alumno.getGrupo_idGrupo());
+            objetoSQL.setInt(4, alumno.getCarrera_idcarrera());
+            objetoSQL.setInt(5, alumno.getNC());
+            objetoSQL.setString(6, alumno.getNombre());
+            objetoSQL.setString(7, alumno.getApellidos());
+            objetoSQL.setInt(8, alumno.getPersona_idPersona());
 
             //Se ejecuta la sentencia
             objetoSQL.executeUpdate();

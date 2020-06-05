@@ -7,7 +7,6 @@ public class TutorVO {
     private String correo;
     private int telefono;
     private int extension;
-    private int persona_idPersona;
     private int idPersona;
     private String nombre;
     private String apellidos;
@@ -16,14 +15,13 @@ public class TutorVO {
     public TutorVO() {
     }
 
-    public TutorVO(int idTutor, String departamento, String puesto, String correo, int telefono, int extension, int persona_idPersona, int idPersona, String nombre, String apellidos, int NC) {
+    public TutorVO(int idTutor, String departamento, String puesto, String correo, int telefono, int extension, int idPersona, String nombre, String apellidos, int NC) {
         this.idTutor = idTutor;
         this.departamento = departamento;
         this.puesto = puesto;
         this.correo = correo;
         this.telefono = telefono;
         this.extension = extension;
-        this.persona_idPersona = persona_idPersona;
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -78,14 +76,6 @@ public class TutorVO {
         this.extension = extension;
     }
 
-    public int getPersona_idPersona() {
-        return persona_idPersona;
-    }
-
-    public void setPersona_idPersona(int persona_idPersona) {
-        this.persona_idPersona = persona_idPersona;
-    }
-
     public int getIdPersona() {
         return idPersona;
     }
@@ -120,7 +110,7 @@ public class TutorVO {
 
     @Override
     public String toString() {
-        return "TutorVO{" + "idTutor=" + idTutor + ", departamento=" + departamento + ", puesto=" + puesto + ", correo=" + correo + ", telefono=" + telefono + ", extension=" + extension + ", persona_idPersona=" + persona_idPersona + ", idPersona=" + idPersona + ", nombre=" + nombre + ", apellidos=" + apellidos + ", NC=" + NC + '}';
+        return "TutorVO{" + "idTutor=" + idTutor + ", departamento=" + departamento + ", puesto=" + puesto + ", correo=" + correo + ", telefono=" + telefono + ", extension=" + extension + ", idPersona=" + idPersona + ", nombre=" + nombre + ", apellidos=" + apellidos + ", NC=" + NC + '}';
     }
     
 }

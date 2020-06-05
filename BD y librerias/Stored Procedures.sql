@@ -17,8 +17,16 @@ create procedure SELECT_alumnoByNC(NC int)
 -- @Autor: Emmanuel Esquivel Pardo
 -- ---------------------------------------------
 begin
-    select a.idAlumno, p.NC, p.nombre, p.apellidos, a.semestre, c.nombre as carrera, g.letra as grupo,
-           a.Grupo_idGrupo, a.Persona_idPersona, a.carrera_idcarrera
+    select a.idAlumno,
+           p.NC,
+           p.nombre,
+           p.apellidos,
+           a.semestre,
+           c.nombre as carrera,
+           g.letra  as grupo,
+           a.Grupo_idGrupo,
+           a.Persona_idPersona,
+           a.carrera_idcarrera
     from alumno a
              inner join persona p on a.Persona_idPersona = p.idPersona
              inner join carrera c on a.carrera_idcarrera = c.idcarrera
@@ -101,9 +109,9 @@ begin
     WHERE a.idAlumno = _idAlumno;
 
     UPDATE persona p
-    set p.nombre =_nombre,
+    set p.nombre    =_nombre,
         p.apellidos = _apellidos,
-        p.NC = _NC
+        p.NC        = _NC
     where p.idPersona = _idPersona;
 end;
 
@@ -382,24 +390,42 @@ begin
     where p.NC like _NC;
 end;
 
-create procedure UPDATE_tutor(_idTutor int, _nombre varchar(45),
+create procedure UPDATE_tutor(_NC int,
+                              _nombre varchar(45),
                               _apellidos varchar(90),
-                              _NC int)
+                              _idPersona int,
+                              _departamento varchar(45),
+                              _puesto varchar(45),
+                              _correo varchar(45),
+                              _telefono int(20),
+                              _ext int(4),
+                              _idDocente int)
     -- ---------------------------------------------
--- Se actualiza por id
+-- Se actualiza datos de tutor
 -- @Autor: Emmanuel Esquivel Pardo
 -- ---------------------------------------------
+
 begin
-    UPDATE tutor t inner join persona p on t.persona_idPersona = p.idPersona
-    set p.nombre    = _nombre,
-        p.apellidos = _apellidos
-    where p.NC = _NC;
+    UPDATE persona p
+    set p.nombre    =_nombre,
+        p.apellidos = _apellidos,
+        p.NC        = _NC
+    where p.idPersona = _idPersona;
+
+    UPDATE tutor t
+    SET t.departamento = _departamento,
+        t.puesto       = _puesto,
+        t.correo       = _correo,
+        t.telefono     = _telefono,
+        t.extension    = _ext
+    WHERE t.iddocente = _iddocente;
+
 end;
 
 create function fn_insertPersona(_nombre varchar(45),
                                  _apellidos varchar(90),
                                  _NC int) RETURNS INT
--- ----------
+    -- ----------
 -- Ingresa una persona y retorna su id generado
 -- ----------
 begin
@@ -411,13 +437,13 @@ begin
             _NC);
     set @idPersona = 0;
     set @idPersona = (select idPersona from persona where NC like _NC);
-    set @idPersona = IFNULL(@idPersona=0);
+    set @idPersona = IFNULL(@idPersona = 0);
     select @idPersona;
     return @idPersona;
 end;
 
 create procedure SELECT_alumnos()
--- ---------------------
+    -- ---------------------
 -- Se consultan los alumnos
 -- ---------------------
 begin
@@ -439,7 +465,7 @@ begin
 end;
 
 create procedure SELECT_tutorByNCAlumno(_ncAlumno int)
--- ---------------------------------------
+    -- ---------------------------------------
 -- Se consulta tutor por el numero de control de un alumno
 -- ---------------------------------------
 
@@ -453,7 +479,7 @@ begin
 end;
 
 create procedure SELECT_tutor()
--- ------------------
+    -- ------------------
 -- Se obtienen los datos de un tutor
 -- ---------------------
 
